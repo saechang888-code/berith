@@ -196,12 +196,7 @@
         <select id="bchap" style="${sel};width:86px">${Array.from({ length: b.n }, (_, k) => `<option value="${k + 1}"${k + 1 === chap ? ' selected' : ''}>${k + 1}장</option>`).join('')}</select>
         <button data-bmove="1" aria-label="다음 장" style="${nav}">${ico('next', '#EEF4EA', 18)}</button>
       </div>
-      <a href="${bibleUrl(b.code, chap)}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px 20px;border-radius:22px;background:var(--deep);text-align:center">
-        <span class="serif" style="font-size:28px;font-weight:700">${b.name} ${chap}장</span>
-        <span style="display:flex;align-items:center;gap:8px;height:48px;padding:0 22px;border-radius:24px;background:var(--text);color:var(--bg);font-size:15px;font-weight:700">새번역으로 읽기 ${ico('ext', '#11281A', 18)}</span>
-        <span style="font-size:12px;color:var(--accent-hi)">대한성서공회 누리집으로 넘어갑니다</span>
-      </a>
-      ${D.today ? `<a href="${bibleUrl(D.today.book, D.today.start)}" target="_blank" rel="noopener" class="outline" style="display:flex;align-items:center;justify-content:space-between;gap:10px"><span style="display:flex;flex-direction:column;gap:2px"><span class="eyebrow" style="font-size:11px">오늘의 베리트</span><span style="font-size:15px">${esc(D.today.range)} 읽기</span></span>${ico('ext', '#C6E6A3', 18)}</a>` : ''}
+      <iframe title="새번역 ${b.name} ${chap}장" src="${bibleUrl(b.code, chap)}" style="width:100%;height:calc(100dvh - 210px);min-height:440px;border:0;border-radius:14px;background:#fff"></iframe>
     </main>${tabbar('bible')}`;
   }
 
