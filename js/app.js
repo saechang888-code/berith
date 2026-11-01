@@ -207,7 +207,7 @@
     return `<main style="gap:20px">
       <div style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">나의 베리트 예배</span><h1>일정</h1></div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        ${stat(yearCount + '번', `${ty}년 한 해`)}${stat(monthCount + '번', `${tm}월 한 달`)}${stat(days.has(today) ? '했음' : '아직', '오늘', days.has(today))}
+        ${stat(yearCount + '회', `${ty}년 한 해`)}${stat(monthCount + '회', `${tm}월 한 달`)}${stat(days.has(today) ? '완료' : '아직', '오늘', days.has(today))}
       </div>
       <div style="display:flex;flex-direction:column;gap:6px">
         <div style="display:flex;align-items:center;justify-content:space-between">
