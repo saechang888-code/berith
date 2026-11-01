@@ -130,10 +130,10 @@
   }
 
   const TYPES = ['묵상', '기도', '감사', '간증'];
-  const SHARE = [['me', '나만', '나만 보기'], ['church', '우리 교회', '새암교회 식구와'], ['all', '모두', '누구나 함께']];
-  const SHARE_NAME = { me: '나만', church: '우리 교회', all: '모두' };
+  const SHARE = [['me', '나에게', '나만 보기'], ['church', '우리 교회에게', '교회 식구와'], ['all', '모두에게', '누구나 함께']];
+  const SHARE_NAME = { me: '나에게', church: '우리 교회에게', all: '모두에게' };
   function viewRecord() {
-    const t = D.today, type = store.get('rtype', '묵상'), share = store.get('rshare', 'me'), view = store.get('rview', 'me');
+    const t = D.today, type = store.get('rtype', '묵상'), view = store.get('rview', 'me');
     const all = store.get('records', []).slice().reverse();
     // 내 기록 = 내가 쓴 모든 글, 우리 교회 = 교회·모두로 올린 글, 모두 = 모두로 올린 글
     const shown = all.filter(r => view === 'me' || (view === 'church' ? r.share === 'church' || r.share === 'all' : r.share === 'all')).slice(0, 20);
@@ -150,14 +150,12 @@
         <input type="text" id="verse" placeholder="예: ${t ? esc(t.range.replace(/\s*[\d-]+장$/, '')) + ' ' + t.start + ':1' : '요 3:16'}"></div>
       <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="note">${type === '기도' ? '나의 기도제목' : type === '감사' ? '오늘의 감사' : type === '간증' ? '나의 간증' : '하나님이 주신 마음'}</label>
         <textarea id="note" placeholder="오늘 말씀을 통해 깨달은 것, 결단한 것을 적어 보세요."></textarea></div>
-      <fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:8px">
-        <legend style="padding:0 0 8px;font-size:13px;color:var(--muted)">누구와 나눌까요</legend>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <span class="lab">기록 저장</span>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-          ${SHARE.map(([v, n, d]) => `<label style="min-height:58px;border-radius:12px;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:14px;cursor:pointer;${v === share ? 'outline:2px solid var(--accent)' : ''}">
-            <span style="display:flex;align-items:center;gap:6px"><input type="radio" name="share" value="${v}" data-share="${v}"${v === share ? ' checked' : ''} style="accent-color:#C6E6A3">${n}</span><span class="muted" style="font-size:11px">${d}</span></label>`).join('')}
+          ${SHARE.map(([v, n, d], i) => `<button data-save="${v}" style="min-height:64px;border-radius:16px;border:${i ? '1px solid rgba(198,230,163,.45)' : '0'};background:${i ? 'var(--surface)' : 'var(--accent)'};color:${i ? 'var(--text)' : 'var(--bg)'};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:15px;font-weight:700">${n}<span style="font-size:11px;font-weight:400;opacity:.8">${d}</span></button>`).join('')}
         </div>
-      </fieldset>
-      <button class="btn btn-primary" id="save">기록 올리기</button>
+      </div>
       <div role="tablist" aria-label="기록 보기" class="chips" style="margin-top:6px">
         ${SHARE.map(([v, n]) => `<button class="chip${v === view ? ' on' : ''}" role="tab" aria-selected="${v === view}" data-rview="${v}">${v === 'me' ? '내 기록' : v === 'church' ? '우리 교회 나눔' : '모두의 나눔'}</button>`).join('')}
       </div>
@@ -268,12 +266,12 @@
   }
 
   document.addEventListener('click', e => {
-    const el = e.target.closest('[data-start],[data-type],[data-share],[data-rview],[data-ctab],#vplay,#splay,#save');
+    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],#vplay,#splay');
     if (!el) return;
     if (el.hasAttribute('data-start')) store.set('started', true);
-    if (el.dataset.type || el.dataset.share) {   // 종류·나눔 범위를 바꿔도 쓰던 글은 그대로 둔다
+    if (el.dataset.type) {   // 종류를 바꿔도 쓰던 글은 그대로 둔다
       const keep = { v: (document.getElementById('verse') || {}).value, n: (document.getElementById('note') || {}).value };
-      if (el.dataset.type) store.set('rtype', el.dataset.type); else store.set('rshare', el.dataset.share);
+      store.set('rtype', el.dataset.type);
       route();
       if (keep.v) document.getElementById('verse').value = keep.v;
       if (keep.n) document.getElementById('note').value = keep.n;
@@ -283,14 +281,14 @@
     if (el.dataset.ctab) { store.set('ctab', el.dataset.ctab); route(); }
     if (el.id === 'vplay') mountPlayer(document.getElementById('vbox'), D.today.video, true);
     if (el.id === 'splay') mountPlayer(document.getElementById('sbox'), D.sermon.video, false);
-    if (el.id === 'save') {
+    if (el.dataset.save) {
       const note = document.getElementById('note').value.trim();
       if (!note) { toast('받은 마음을 한 줄이라도 적어 주세요'); return; }
       const recs = store.get('records', []);
-      const share = store.get('rshare', 'me');
+      const share = el.dataset.save;
       recs.push({ date: todayKey(), type: store.get('rtype', '묵상'), share, range: D.today ? D.today.range : '', verse: document.getElementById('verse').value.trim(), note });
       store.set('records', recs); store.set('rview', share);
-      toast(share === 'me' ? '나만 보는 기록으로 저장했습니다' : share === 'church' ? '우리 교회 나눔에 올렸습니다' : '모두의 나눔에 올렸습니다'); route();
+      toast(share === 'me' ? '나에게 저장했습니다' : share === 'church' ? '우리 교회에게 나눴습니다' : '모두에게 나눴습니다'); route();
     }
   });
   window.addEventListener('hashchange', route);
