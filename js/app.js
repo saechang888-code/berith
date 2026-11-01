@@ -150,8 +150,8 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="verse">제목</label>
         <input type="text" id="verse"></div>
-      <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="note">${type === '기도' ? '나의 기도제목' : type === '감사' ? '오늘의 감사' : type === '간증' ? '나의 간증' : '하나님이 주신 마음'}</label>
-        <textarea id="note"${type === '묵상' ? ' placeholder="오늘 말씀을 통해 깨달은 것, 결단한 것을 적어 보세요."' : ''}></textarea></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="note">${type === '기도' ? '나의 기도제목' : type === '감사' ? '오늘의 감사' : type === '간증' ? '나의 간증' : '하나님이 주신 말씀'}</label>
+        <textarea id="note"${type === '묵상' ? ' placeholder="말씀을 붙여 넣으시고 묵상한 내용을 적어 보세요."' : ''}></textarea></div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <span class="lab">기록 저장</span>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
