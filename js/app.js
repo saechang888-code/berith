@@ -228,7 +228,7 @@
     return `<main style="gap:14px">${head(`${b.name} ${chap}장`, 'data-bview="chapters"')}
       ${others}
       ${hasEasy ? `<div class="chips" role="tablist" aria-label="보는 방식">${[['both', '함께 보기'], ['krv', '개역한글'], ['easy', '오늘의 말로']].map(([m, n]) => chip(m === mode, `data-bmode="${m}" role="tab" aria-selected="${m === mode}"`, n)).join('')}</div>
-      ${mode !== 'krv' ? '<span class="muted" style="font-size:11px;margin-top:-6px">오늘의 말로 풀어 읽기 — 개역한글을 쉬운 오늘의 말로 풀어 옮긴 참고용 글이에요.</span>' : ''}` : ''}
+      ${mode !== 'krv' ? '<span class="muted" style="font-size:11px;margin-top:-6px">오늘의 말로 풀어 읽기 — 성경 번역이 아니라, 개역한글을 오늘의 말로 풀어 이해를 돕는 글이에요.</span>' : ''}` : ''}
       ${vs.length ? `<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch" aria-label="절로 가기">${vs.map((_, k) => `<button data-bverse="${k + 1}" style="flex-shrink:0;min-width:40px;height:36px;border-radius:18px;border:1px solid rgba(238,244,234,.16);background:${k + 1 === verse ? 'var(--accent)' : 'none'};color:${k + 1 === verse ? 'var(--bg)' : 'var(--soft)'};font-size:13px">${k + 1}절</button>`).join('')}</div>` : ''}
       <article style="display:flex;flex-direction:column;gap:12px;padding:22px 20px;border-radius:18px;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.9">
         ${data ? vs.map((t, k) => `<p id="v${k + 1}" style="margin:0;${k + 1 === verse ? 'background:var(--mark);margin:0 -10px;padding:6px 10px;border-radius:8px' : ''}"><sup style="font-family:var(--sans);font-size:11px;color:var(--deep);margin-right:6px;font-weight:700">${k + 1}</sup>${verseHtml(t, k)}</p>`).join('') : '<p class="muted" style="margin:0">불러오는 중입니다…</p>'}
