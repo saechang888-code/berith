@@ -259,7 +259,7 @@
     if (!h && store.get('started', false)) { location.replace('#/home'); return; }
     document.body.classList.remove('paper');
     const [a, b] = h.split('/');
-    $app.innerHTML = !a ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord()
+    $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord()
       : a === 'church' ? (b ? viewChurch(b) : viewChurches()) : viewHome();
     document.querySelector('meta[name=theme-color]').content = document.body.classList.contains('paper') ? '#F2F8EC' : '#11281A';
     window.scrollTo(0, 0);
