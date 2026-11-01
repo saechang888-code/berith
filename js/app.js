@@ -75,7 +75,7 @@
     const pct = t ? Math.round(t.day / 365 * 100) : 0;
     return `<main>
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <span class="serif" style="font-size:20px;font-weight:700;letter-spacing:.06em">베리트</span>
+        <span style="display:flex;align-items:center;gap:10px"><img src="images/berith-logo.png" alt="" width="34" height="34" style="border-radius:9px"><span class="serif" style="font-size:20px;font-weight:700;letter-spacing:.06em">베리트 365</span></span>
         <a href="#/login" aria-label="내 정보" style="width:44px;height:44px;border-radius:22px;background:var(--surface);display:flex;align-items:center;justify-content:center">${ico('user', '#A9BBA5', 20)}</a>
       </div>
       <div style="display:flex;flex-direction:column;gap:6px">
