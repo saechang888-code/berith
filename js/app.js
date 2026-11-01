@@ -201,6 +201,7 @@
     }
     const sd = new Date(sel + 'T00:00:00+09:00'), selRecs = store.get('records', []).filter(r => r.date === sel);
     const selW = watched()[sel] || {}, selEv = (events[sel] || []).slice().sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+    const editId = store.get('evEdit', null), editing = selEv.find(e => e.id === editId);
     const stat = (n, label) => `<div class="card" style="padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:2px"><span class="serif" style="font-size:26px;font-weight:700;color:var(--accent)">${n}</span><span class="muted" style="font-size:12px">${label}</span></div>`;
     return `<main style="gap:20px">
       <div style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">나의 베리트 예배</span><h1>일정</h1></div>
@@ -228,15 +229,18 @@
         </div>
         <div style="height:1px;background:var(--line)"></div>
         <span class="lab">내 일정</span>
-        ${selEv.length ? selEv.map(e => `<div style="display:flex;align-items:center;gap:12px;min-height:44px">
+        ${selEv.length ? selEv.map(e => `<div style="display:flex;align-items:center;gap:6px;min-height:44px;${e.id === editId ? 'margin:0 -10px;padding:0 10px;border-radius:12px;background:rgba(198,230,163,.12)' : ''}">
             <span class="serif" style="width:52px;color:var(--accent);font-weight:600">${esc(e.time || '종일')}</span><span style="flex:1;font-size:14px">${esc(e.text)}</span>
+            <button data-evedit="${e.id}" aria-label="일정 고치기" style="width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center">${ico('pen', '#C6E6A3', 16)}</button>
             <button data-evdel="${e.id}" aria-label="일정 지우기" style="width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center">${ico('x', '#A9BBA5', 16)}</button></div>`).join('') : '<span class="muted" style="font-size:13px">적어 둔 일정이 없습니다.</span>'}
+        ${editing ? '<span style="font-size:12px;color:var(--accent)">일정을 고치는 중입니다 — 고친 뒤 ✓를 누르세요</span>' : ''}
         <div style="display:flex;gap:8px">
           <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtime">시간</label>
-          <input type="time" id="evtime" style="width:110px;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 10px;font-size:14px;color-scheme:dark">
+          <input type="time" id="evtime" value="${editing ? esc(editing.time) : ''}" style="width:128px;flex-shrink:0;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 6px;font-size:14px;color-scheme:dark">
           <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtext">일정 내용</label>
-          <input type="text" id="evtext" placeholder="일정 쓰기" style="flex:1;min-width:0;font-family:var(--sans);font-size:14px;padding:12px 14px;background:var(--bg)">
-          <button id="evadd" aria-label="일정 넣기" style="width:48px;flex-shrink:0;border:0;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center">${ico('plus', '#11281A', 20)}</button>
+          <input type="text" id="evtext" value="${editing ? esc(editing.text) : ''}" placeholder="일정 쓰기" style="flex:1;min-width:0;font-family:var(--sans);font-size:14px;padding:12px 14px;background:var(--bg)">
+          <button id="evadd" aria-label="${editing ? '고친 일정 저장' : '일정 넣기'}" style="width:48px;flex-shrink:0;border:0;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center">${ico(editing ? 'check' : 'plus', '#11281A', 20)}</button>
+          ${editing ? `<button data-evcancel="1" aria-label="고치기 그만두기" style="width:44px;flex-shrink:0;border:1px solid rgba(238,244,234,.18);border-radius:12px;background:none;display:flex;align-items:center;justify-content:center">${ico('x', '#A9BBA5', 18)}</button>` : ''}
         </div>
       </div>
     </main>${tabbar('calendar')}`;
@@ -341,9 +345,14 @@
   }
 
   document.addEventListener('click', e => {
-    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],#evadd,#vplay,#splay');
+    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#vplay,#splay');
     if (!el) return;
-    if (el.dataset.day) { store.set('calSel', el.dataset.day); route(); return; }
+    if (el.dataset.day) { store.set('calSel', el.dataset.day); store.set('evEdit', null); route(); return; }
+    if (el.dataset.evedit || el.dataset.evcancel) {
+      store.set('evEdit', el.dataset.evedit || null); route();
+      if (el.dataset.evedit) { const t = document.getElementById('evtext'); t.focus(); t.setSelectionRange(t.value.length, t.value.length); }
+      return;
+    }
     if (el.dataset.cal) {
       const [y, m] = store.get('calMonth', todayKey().slice(0, 7)).split('-').map(Number);
       const d = new Date(Date.UTC(y, m - 1 + Number(el.dataset.cal), 1));
@@ -354,9 +363,12 @@
       if (el.id === 'evadd') {
         const text = document.getElementById('evtext').value.trim();
         if (!text) { toast('일정 내용을 적어 주세요'); return; }
-        (ev[sel] = ev[sel] || []).push({ id: Date.now().toString(36), time: document.getElementById('evtime').value, text });
-        toast('일정을 넣었습니다');
+        const time = document.getElementById('evtime').value, editId = store.get('evEdit', null);
+        const found = editId && (ev[sel] || []).find(x => x.id === editId);
+        if (found) { found.time = time; found.text = text; store.set('evEdit', null); toast('일정을 고쳤습니다'); }
+        else { (ev[sel] = ev[sel] || []).push({ id: Date.now().toString(36), time, text }); toast('일정을 넣었습니다'); }
       } else {
+        if (el.dataset.evdel === store.get('evEdit', null)) store.set('evEdit', null);
         ev[sel] = (ev[sel] || []).filter(x => x.id !== el.dataset.evdel);
         if (!ev[sel].length) delete ev[sel];
       }
