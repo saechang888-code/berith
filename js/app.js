@@ -182,31 +182,32 @@
     const today = todayKey(), sel = store.get('calSel', today);
     const [cy, cm] = store.get('calMonth', today.slice(0, 7)).split('-').map(Number);
     const days = worshipDays(), events = store.get('events', {});
+    // 위의 세 칸: 올해 몇 번 · 이번 달 몇 번 · 오늘 했는지 (달력을 넘겨도 늘 오늘 기준)
+    const [ty, tm] = today.split('-').map(Number);
+    const yearCount = [...days].filter(d => d.startsWith(String(ty))).length;
+    const monthCount = [...days].filter(d => d.startsWith(today.slice(0, 7))).length;
+    const stat = (n, label, hi) => `<div class="card" style="padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:2px"><span class="serif" style="font-size:26px;font-weight:700;color:${hi === false ? 'var(--muted)' : 'var(--accent)'}">${n}</span><span class="muted" style="font-size:12px">${label}</span></div>`;
     // 세는 것: 이번 달 · 연속 · 모두
-    const monthCount = [...days].filter(d => d.startsWith(ymd(cy, cm, 1).slice(0, 7))).length;
-    let streak = 0; for (let d = new Date(today + 'T00:00:00Z'); ; d.setUTCDate(d.getUTCDate() - 1)) {
-      const k = d.toISOString().slice(0, 10);
-      if (days.has(k)) streak++; else if (k !== today) break;   // 오늘 아직 안 드렸어도 어제까지 이어진 날수는 센다
-      if (streak > 3660) break;
-    }
+    const wAll = watched(), recDays = new Set(store.get('records', []).map(r => r.date));
     const first = new Date(Date.UTC(cy, cm - 1, 1)).getUTCDay(), last = new Date(Date.UTC(cy, cm, 0)).getUTCDate();
     const cells = [];
     for (let i = 0; i < first; i++) cells.push('<span></span>');
     for (let d = 1; d <= last; d++) {
       const k = ymd(cy, cm, d), dow = (first + d - 1) % 7, ev = (events[k] || []).length;
-      const isSel = k === sel, isToday = k === today, done = days.has(k);
-      cells.push(`<button data-day="${k}" aria-label="${cm}월 ${d}일${done ? ', 베리트 예배 드림' : ''}${ev ? `, 일정 ${ev}개` : ''}" aria-pressed="${isSel}" style="height:48px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0">
+      const isSel = k === sel, isToday = k === today, worship = !!(wAll[k] && wAll[k].done), med = recDays.has(k);
+      // 점 색: 베리트 예배(영상) 형광 분홍 · 묵상(기록) 파랑 · 일정 연한 녹색
+      const dot = c => `<i style="width:7px;height:7px;border-radius:4px;background:${c}"></i>`;
+      cells.push(`<button data-day="${k}" aria-label="${cm}월 ${d}일${worship ? ', 베리트 예배' : ''}${med ? ', 묵상 기록' : ''}${ev ? `, 일정 ${ev}개` : ''}" aria-pressed="${isSel}" style="height:50px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0">
         <span style="width:32px;height:32px;line-height:32px;border-radius:16px;font-size:14px;${isSel ? 'background:var(--accent);color:var(--bg);font-weight:700' : isToday ? 'border:1px solid var(--accent);color:var(--accent);font-weight:700' : `color:${dow === 0 ? '#E6A98F' : 'var(--text)'}`}">${d}</span>
-        <span style="display:flex;gap:3px;height:6px">${done ? '<i style="width:6px;height:6px;border-radius:3px;background:var(--accent)"></i>' : ''}${ev ? '<i style="width:6px;height:6px;border-radius:3px;border:1px solid var(--accent-hi);box-sizing:border-box"></i>' : ''}</span></button>`);
+        <span style="display:flex;gap:3px;height:7px">${worship ? dot('#FF4FC4') : ''}${med ? dot('#4DA3FF') : ''}${ev ? dot('#C6E6A3') : ''}</span></button>`);
     }
     const sd = new Date(sel + 'T00:00:00+09:00'), selRecs = store.get('records', []).filter(r => r.date === sel);
     const selW = watched()[sel] || {}, selEv = (events[sel] || []).slice().sort((a, b) => (a.time || '').localeCompare(b.time || ''));
-    const editId = store.get('evEdit', null), editing = selEv.find(e => e.id === editId);
-    const stat = (n, label) => `<div class="card" style="padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:2px"><span class="serif" style="font-size:26px;font-weight:700;color:var(--accent)">${n}</span><span class="muted" style="font-size:12px">${label}</span></div>`;
+    const editId = store.get('evEdit', null);
     return `<main style="gap:20px">
       <div style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">나의 베리트 예배</span><h1>일정</h1></div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        ${stat(monthCount + '일', `${cm}월 예배`)}${stat(streak + '일', '연속')}${stat(days.size + '일', '모두')}
+        ${stat(yearCount + '번', `${ty}년 한 해`)}${stat(monthCount + '번', `${tm}월 한 달`)}${stat(days.has(today) ? '했음' : '아직', '오늘', days.has(today))}
       </div>
       <div style="display:flex;flex-direction:column;gap:6px">
         <div style="display:flex;align-items:center;justify-content:space-between">
@@ -216,9 +217,6 @@
         </div>
         <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:12px;color:var(--muted);padding-top:6px">${'일월화수목금토'.split('').map((d, i) => `<span style="${i ? '' : 'color:#E6A98F'}">${d}</span>`).join('')}</div>
         <div style="display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;text-align:center">${cells.join('')}</div>
-        <div style="display:flex;gap:16px;justify-content:center;font-size:11px;color:var(--muted)">
-          <span style="display:flex;align-items:center;gap:6px"><i style="width:6px;height:6px;border-radius:3px;background:var(--accent)"></i>베리트 예배</span>
-          <span style="display:flex;align-items:center;gap:6px"><i style="width:6px;height:6px;border-radius:3px;border:1px solid var(--accent-hi)"></i>내 일정</span></div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:14px">
         <span class="serif" style="font-size:17px;font-weight:700">${sd.getMonth() + 1}월 ${sd.getDate()}일 ${'일월화수목금토'[sd.getDay()]}요일</span>
@@ -228,19 +226,29 @@
           ${selRecs.map(r => `<span class="muted" style="font-size:12px">· ${esc(r.type)} 기록: ${esc(r.note.slice(0, 40))}${r.note.length > 40 ? '…' : ''}</span>`).join('')}
         </div>
         <div style="height:1px;background:var(--line)"></div>
-        <span class="lab">내 일정</span>
-        ${selEv.length ? selEv.map(e => `<div style="display:flex;align-items:center;gap:6px;min-height:44px;${e.id === editId ? 'margin:0 -10px;padding:0 10px;border-radius:12px;background:rgba(198,230,163,.12)' : ''}">
-            <span class="serif" style="width:52px;color:var(--accent);font-weight:600">${esc(e.time || '종일')}</span><span style="flex:1;font-size:14px">${esc(e.text)}</span>
-            <button data-evedit="${e.id}" aria-label="일정 고치기" style="width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center">${ico('pen', '#C6E6A3', 16)}</button>
-            <button data-evdel="${e.id}" aria-label="일정 지우기" style="width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center">${ico('x', '#A9BBA5', 16)}</button></div>`).join('') : '<span class="muted" style="font-size:13px">적어 둔 일정이 없습니다.</span>'}
-        ${editing ? '<span style="font-size:12px;color:var(--accent)">일정을 고치는 중입니다 — 고친 뒤 ✓를 누르세요</span>' : ''}
+        ${selEv.map(e => e.id === editId
+          // 누른 일정: 그 자리에서 바로 고친다
+          ? `<div style="display:flex;flex-direction:column;gap:10px;margin:0 -10px;padding:12px 10px;border-radius:14px;background:rgba(198,230,163,.12)">
+              <div style="display:flex;gap:8px">
+                <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="edtime">시간</label>
+                <input type="time" id="edtime" value="${esc(e.time)}" style="width:128px;flex-shrink:0;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 6px;font-size:14px;color-scheme:dark">
+                <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="edtext">일정 내용</label>
+                <input type="text" id="edtext" value="${esc(e.text)}" style="flex:1;min-width:0;font-family:var(--sans);font-size:15px;padding:12px 14px;background:var(--bg)">
+              </div>
+              <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px">
+                <button id="edsave" class="btn btn-primary" style="min-height:44px;font-size:14px">고친 내용 저장</button>
+                <button data-evdel="${e.id}" class="btn btn-ghost" style="min-height:44px;font-size:14px">지우기</button>
+                <button data-evcancel="1" class="btn btn-ghost" style="min-height:44px;font-size:14px">닫기</button>
+              </div></div>`
+          : `<button data-evedit="${e.id}" aria-label="${esc(e.text)} 일정 열기" style="display:flex;align-items:center;gap:12px;min-height:48px;padding:0;border:0;background:none;color:var(--text);text-align:left;width:100%">
+              <span class="serif" style="width:52px;flex-shrink:0;color:var(--accent);font-weight:600;font-size:15px">${esc(e.time || '종일')}</span><span style="flex:1;font-size:15px">${esc(e.text)}</span>${ico('next', '#A9BBA5', 16)}</button>`).join('')}
+        ${selEv.length ? '<span class="muted" style="font-size:11px;margin-top:-6px">일정을 누르면 고치거나 지울 수 있습니다</span>' : '<span class="muted" style="font-size:13px">적어 둔 일정이 없습니다.</span>'}
         <div style="display:flex;gap:8px">
           <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtime">시간</label>
-          <input type="time" id="evtime" value="${editing ? esc(editing.time) : ''}" style="width:128px;flex-shrink:0;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 6px;font-size:14px;color-scheme:dark">
+          <input type="time" id="evtime" style="width:128px;flex-shrink:0;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 6px;font-size:14px;color-scheme:dark">
           <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtext">일정 내용</label>
-          <input type="text" id="evtext" value="${editing ? esc(editing.text) : ''}" placeholder="일정 쓰기" style="flex:1;min-width:0;font-family:var(--sans);font-size:14px;padding:12px 14px;background:var(--bg)">
-          <button id="evadd" aria-label="${editing ? '고친 일정 저장' : '일정 넣기'}" style="width:48px;flex-shrink:0;border:0;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center">${ico(editing ? 'check' : 'plus', '#11281A', 20)}</button>
-          ${editing ? `<button data-evcancel="1" aria-label="고치기 그만두기" style="width:44px;flex-shrink:0;border:1px solid rgba(238,244,234,.18);border-radius:12px;background:none;display:flex;align-items:center;justify-content:center">${ico('x', '#A9BBA5', 18)}</button>` : ''}
+          <input type="text" id="evtext" placeholder="새 일정 쓰기" style="flex:1;min-width:0;font-family:var(--sans);font-size:14px;padding:12px 14px;background:var(--bg)">
+          <button id="evadd" aria-label="일정 넣기" style="width:48px;flex-shrink:0;border:0;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center">${ico('plus', '#11281A', 20)}</button>
         </div>
       </div>
     </main>${tabbar('calendar')}`;
@@ -345,12 +353,12 @@
   }
 
   document.addEventListener('click', e => {
-    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#vplay,#splay');
+    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#edsave,#vplay,#splay');
     if (!el) return;
     if (el.dataset.day) { store.set('calSel', el.dataset.day); store.set('evEdit', null); route(); return; }
     if (el.dataset.evedit || el.dataset.evcancel) {
       store.set('evEdit', el.dataset.evedit || null); route();
-      if (el.dataset.evedit) { const t = document.getElementById('evtext'); t.focus(); t.setSelectionRange(t.value.length, t.value.length); }
+      const t = document.getElementById('edtext'); if (t) { t.focus(); t.setSelectionRange(t.value.length, t.value.length); }
       return;
     }
     if (el.dataset.cal) {
@@ -358,19 +366,23 @@
       const d = new Date(Date.UTC(y, m - 1 + Number(el.dataset.cal), 1));
       store.set('calMonth', d.toISOString().slice(0, 7)); route(); return;
     }
-    if (el.id === 'evadd' || el.dataset.evdel) {
+    if (el.id === 'evadd' || el.id === 'edsave' || el.dataset.evdel) {
       const sel = store.get('calSel', todayKey()), ev = store.get('events', {});
       if (el.id === 'evadd') {
         const text = document.getElementById('evtext').value.trim();
         if (!text) { toast('일정 내용을 적어 주세요'); return; }
-        const time = document.getElementById('evtime').value, editId = store.get('evEdit', null);
-        const found = editId && (ev[sel] || []).find(x => x.id === editId);
-        if (found) { found.time = time; found.text = text; store.set('evEdit', null); toast('일정을 고쳤습니다'); }
-        else { (ev[sel] = ev[sel] || []).push({ id: Date.now().toString(36), time, text }); toast('일정을 넣었습니다'); }
+        (ev[sel] = ev[sel] || []).push({ id: Date.now().toString(36), time: document.getElementById('evtime').value, text });
+        toast('일정을 넣었습니다');
+      } else if (el.id === 'edsave') {
+        const text = document.getElementById('edtext').value.trim();
+        if (!text) { toast('일정 내용을 적어 주세요'); return; }
+        const found = (ev[sel] || []).find(x => x.id === store.get('evEdit', null));
+        if (found) { found.time = document.getElementById('edtime').value; found.text = text; toast('일정을 고쳤습니다'); }
+        store.set('evEdit', null);
       } else {
-        if (el.dataset.evdel === store.get('evEdit', null)) store.set('evEdit', null);
         ev[sel] = (ev[sel] || []).filter(x => x.id !== el.dataset.evdel);
         if (!ev[sel].length) delete ev[sel];
+        store.set('evEdit', null); toast('일정을 지웠습니다');
       }
       store.set('events', ev); route(); return;
     }
