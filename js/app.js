@@ -417,7 +417,8 @@
     const h = location.hash.replace(/^#\/?/, '');
     if (!h && store.get('started', false)) { location.replace('#/home'); return; }
     document.body.classList.remove('paper');
-    const [a, b] = h.split('/');
+    const [a, b, c] = h.split('/');
+    if (a === 'bible' && b) { setBible({ book: b, chap: Number(c) || 1, view: 'read', verse: 0 }); history.replaceState(null, '', '#/bible'); }   // #/bible/jhn/3 처럼 바로 열기
     $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord() : a === 'calendar' ? viewCalendar() : a === 'bible' ? viewBible()
       : a === 'church' ? (b ? viewChurch(b) : viewChurches()) : viewHome();
     document.querySelector('meta[name=theme-color]').content = document.body.classList.contains('paper') ? '#F2F8EC' : '#11281A';
