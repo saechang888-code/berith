@@ -64,6 +64,9 @@ if __name__ == '__main__':
         hist = load('history.json', {})
         hist[t['date']] = {k: t[k] for k in ('day', 'range', 'book', 'start', 'end', 'video')}
         save('history.json', dict(sorted(hist.items())))
+        plan = load('plan.json', {})   # 일정 달력의 '그날 영상'도 함께 채운다
+        plan[t['date'][5:]] = {k: t[k] for k in ('day', 'range', 'video', 'book', 'start', 'end')}
+        save('plan.json', dict(sorted(plan.items())))
         print('오늘:', t['title'])
     s = sermon()
     if s:

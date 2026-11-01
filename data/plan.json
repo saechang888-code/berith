@@ -1,0 +1,1922 @@
+{
+ "01-01": {
+  "day": 1,
+  "range": "창세기 1-3장",
+  "video": "WHBwJE2BvQI",
+  "book": "gen",
+  "start": 1,
+  "end": 3
+ },
+ "01-02": {
+  "day": 2,
+  "range": "창세기 4-7장",
+  "video": "UFx4rWckhBY",
+  "book": "gen",
+  "start": 4,
+  "end": 7
+ },
+ "01-03": {
+  "day": 3,
+  "range": "창세기 8-11장",
+  "video": "a1N3y5bTl3w",
+  "book": "gen",
+  "start": 8,
+  "end": 11
+ },
+ "01-04": {
+  "day": 4,
+  "range": "창세기 12-15장",
+  "video": "9W72CiqjWFc",
+  "book": "gen",
+  "start": 12,
+  "end": 15
+ },
+ "01-05": {
+  "day": 5,
+  "range": "창세기 16-18장",
+  "video": "I6oCTd5S58s",
+  "book": "gen",
+  "start": 16,
+  "end": 18
+ },
+ "01-06": {
+  "day": 6,
+  "range": "창세기 19-21장",
+  "video": "AbWFI-Fobxg",
+  "book": "gen",
+  "start": 19,
+  "end": 21
+ },
+ "01-07": {
+  "day": 7,
+  "range": "창세기 22-24장",
+  "video": "d2bhimjeFfU",
+  "book": "gen",
+  "start": 22,
+  "end": 24
+ },
+ "01-08": {
+  "day": 8,
+  "range": "창세기 25-27장",
+  "video": "YqzuVjmmonc",
+  "book": "gen",
+  "start": 25,
+  "end": 27
+ },
+ "01-09": {
+  "day": 9,
+  "range": "창세기 28-29장",
+  "video": "u9wYfIksHFU",
+  "book": "gen",
+  "start": 28,
+  "end": 29
+ },
+ "01-10": {
+  "day": 10,
+  "range": "창세기 30-31장",
+  "video": "mAe953vify4",
+  "book": "gen",
+  "start": 30,
+  "end": 31
+ },
+ "01-12": {
+  "day": 12,
+  "range": "창세기 35-37장",
+  "video": "wDZtsMj3oI0",
+  "book": "gen",
+  "start": 35,
+  "end": 37
+ },
+ "01-13": {
+  "day": 13,
+  "range": "창세기 38-40장",
+  "video": "-WmcMK9t-78",
+  "book": "gen",
+  "start": 38,
+  "end": 40
+ },
+ "01-14": {
+  "day": 14,
+  "range": "창세기 41-42장",
+  "video": "CY6BrvlAeQQ",
+  "book": "gen",
+  "start": 41,
+  "end": 42
+ },
+ "01-15": {
+  "day": 15,
+  "range": "창세기 43-44장",
+  "video": "gxHzqMkfT4A",
+  "book": "gen",
+  "start": 43,
+  "end": 44
+ },
+ "01-16": {
+  "day": 16,
+  "range": "창세기 45-47장",
+  "video": "THD-CocjNhE",
+  "book": "gen",
+  "start": 45,
+  "end": 47
+ },
+ "01-17": {
+  "day": 17,
+  "range": "창세기 48-50장",
+  "video": "SL2Bamqtbf4",
+  "book": "gen",
+  "start": 48,
+  "end": 50
+ },
+ "01-18": {
+  "day": 18,
+  "range": "출애굽기 1-3장",
+  "video": "0DH8RuJz_-s",
+  "book": "exo",
+  "start": 1,
+  "end": 3
+ },
+ "01-19": {
+  "day": 19,
+  "range": "출애굽기 4-6장",
+  "video": "5sxay4tf6zc",
+  "book": "exo",
+  "start": 4,
+  "end": 6
+ },
+ "01-20": {
+  "day": 20,
+  "range": "출애굽기 7-9장",
+  "video": "3jFFI6ea5VU",
+  "book": "exo",
+  "start": 7,
+  "end": 9
+ },
+ "01-21": {
+  "day": 21,
+  "range": "출애굽기 10-12장",
+  "video": "SJIYsdl1VNM",
+  "book": "exo",
+  "start": 10,
+  "end": 12
+ },
+ "01-22": {
+  "day": 22,
+  "range": "출애굽기 13-15장",
+  "video": "hZntrcbhVhA",
+  "book": "exo",
+  "start": 13,
+  "end": 15
+ },
+ "01-23": {
+  "day": 23,
+  "range": "출애굽기 16-18장",
+  "video": "6uf5veS8VU4",
+  "book": "exo",
+  "start": 16,
+  "end": 18
+ },
+ "01-24": {
+  "day": 24,
+  "range": "출애굽기 19-21장",
+  "video": "akYVWXo-Yzc",
+  "book": "exo",
+  "start": 19,
+  "end": 21
+ },
+ "01-25": {
+  "day": 25,
+  "range": "출애굽기 22-23장",
+  "video": "sAKXRTHHTRQ",
+  "book": "exo",
+  "start": 22,
+  "end": 23
+ },
+ "01-26": {
+  "day": 26,
+  "range": "출애굽기 24-25장",
+  "video": "U6TK9jKkKsM",
+  "book": "exo",
+  "start": 24,
+  "end": 25
+ },
+ "01-27": {
+  "day": 27,
+  "range": "출애굽기 26-28장",
+  "video": "_hVSjLMcCE0",
+  "book": "exo",
+  "start": 26,
+  "end": 28
+ },
+ "01-28": {
+  "day": 28,
+  "range": "출애굽기 29-30장",
+  "video": "LU6es78lppI",
+  "book": "exo",
+  "start": 29,
+  "end": 30
+ },
+ "01-29": {
+  "day": 29,
+  "range": "출애굽기 31-33장",
+  "video": "pZayL_NZcl0",
+  "book": "exo",
+  "start": 31,
+  "end": 33
+ },
+ "01-30": {
+  "day": 30,
+  "range": "출애굽기 34-36장",
+  "video": "GyBFbiKbdmw",
+  "book": "exo",
+  "start": 34,
+  "end": 36
+ },
+ "01-31": {
+  "day": 31,
+  "range": "출애굽기 37-40장",
+  "video": "cvNirgQFNBw",
+  "book": "exo",
+  "start": 37,
+  "end": 40
+ },
+ "02-01": {
+  "day": 32,
+  "range": "레위기 1-6장",
+  "video": "qI3ckI_B0kQ",
+  "book": "lev",
+  "start": 1,
+  "end": 6
+ },
+ "02-02": {
+  "day": 33,
+  "range": "레위기 7-9장",
+  "video": "Bi-2n7O3lHI",
+  "book": "lev",
+  "start": 7,
+  "end": 9
+ },
+ "02-03": {
+  "day": 34,
+  "range": "레위기 10-13장",
+  "video": "DVCBOLTQXjM",
+  "book": "lev",
+  "start": 10,
+  "end": 13
+ },
+ "02-04": {
+  "day": 35,
+  "range": "레위기 14-16장",
+  "video": "FMrX_BINmbw",
+  "book": "lev",
+  "start": 14,
+  "end": 16
+ },
+ "02-05": {
+  "day": 36,
+  "range": "레위기 17-19장",
+  "video": "vXeXlZ7K2iA",
+  "book": "lev",
+  "start": 17,
+  "end": 19
+ },
+ "02-06": {
+  "day": 37,
+  "range": "레위기 20-22장",
+  "video": "IoQgrJTE0pM",
+  "book": "lev",
+  "start": 20,
+  "end": 22
+ },
+ "02-07": {
+  "day": 38,
+  "range": "레위기 23-25장",
+  "video": "srx92l18Nlc",
+  "book": "lev",
+  "start": 23,
+  "end": 25
+ },
+ "02-08": {
+  "day": 39,
+  "range": "레위기 26-27장",
+  "video": "1_YyweIuypU",
+  "book": "lev",
+  "start": 26,
+  "end": 27
+ },
+ "02-09": {
+  "day": 40,
+  "range": "민수기 1-4장",
+  "video": "8mQ7UTRFUFA",
+  "book": "num",
+  "start": 1,
+  "end": 4
+ },
+ "02-10": {
+  "day": 41,
+  "range": "민수기 5-7장",
+  "video": "iAitc4L8scU",
+  "book": "num",
+  "start": 5,
+  "end": 7
+ },
+ "02-11": {
+  "day": 42,
+  "range": "민수기 8-10장",
+  "video": "aOrkj8mNeyc",
+  "book": "num",
+  "start": 8,
+  "end": 10
+ },
+ "02-12": {
+  "day": 43,
+  "range": "민수기 11-14장",
+  "video": "-d8WWBmaAU4",
+  "book": "num",
+  "start": 11,
+  "end": 14
+ },
+ "02-13": {
+  "day": 44,
+  "range": "민수기 15-18장",
+  "video": "ScI3XUffAtk",
+  "book": "num",
+  "start": 15,
+  "end": 18
+ },
+ "02-14": {
+  "day": 45,
+  "range": "민수기 19-21장",
+  "video": "7yrujubCMtM",
+  "book": "num",
+  "start": 19,
+  "end": 21
+ },
+ "02-15": {
+  "day": 46,
+  "range": "민수기 22-25장",
+  "video": "cquamrVWMw4",
+  "book": "num",
+  "start": 22,
+  "end": 25
+ },
+ "02-16": {
+  "day": 47,
+  "range": "민수기 26-29장",
+  "video": "RBkDtsMG2C4",
+  "book": "num",
+  "start": 26,
+  "end": 29
+ },
+ "02-17": {
+  "day": 48,
+  "range": "민수기 30-33장",
+  "video": "GkOLNxycAU0",
+  "book": "num",
+  "start": 30,
+  "end": 33
+ },
+ "02-18": {
+  "day": 49,
+  "range": "민수기 34-36장",
+  "video": "q2HG4QPMnZo",
+  "book": "num",
+  "start": 34,
+  "end": 36
+ },
+ "02-19": {
+  "day": 50,
+  "range": "신명기 1-3장",
+  "video": "3fvtsjdyHzg",
+  "book": "deu",
+  "start": 1,
+  "end": 3
+ },
+ "02-20": {
+  "day": 51,
+  "range": "신명기 4-5장",
+  "video": "PN-8TKxjZRA",
+  "book": "deu",
+  "start": 4,
+  "end": 5
+ },
+ "02-21": {
+  "day": 52,
+  "range": "신명기 6-8장",
+  "video": "I16EiTmAqU4",
+  "book": "deu",
+  "start": 6,
+  "end": 8
+ },
+ "02-22": {
+  "day": 53,
+  "range": "신명기 9-11장",
+  "video": "GCC9o5O6-RE",
+  "book": "deu",
+  "start": 9,
+  "end": 11
+ },
+ "02-23": {
+  "day": 54,
+  "range": "신명기 12-15장",
+  "video": "yrFsLkN_hjw",
+  "book": "deu",
+  "start": 12,
+  "end": 15
+ },
+ "02-24": {
+  "day": 55,
+  "range": "신명기 16-18장",
+  "video": "4OmdHogjgkM",
+  "book": "deu",
+  "start": 16,
+  "end": 18
+ },
+ "02-25": {
+  "day": 56,
+  "range": "신명기 19-22장",
+  "video": "WOgcxYV3KcI",
+  "book": "deu",
+  "start": 19,
+  "end": 22
+ },
+ "02-26": {
+  "day": 57,
+  "range": "신명기 23-27장",
+  "video": "MNxg9NkzFCY",
+  "book": "deu",
+  "start": 23,
+  "end": 27
+ },
+ "02-27": {
+  "day": 58,
+  "range": "신명기 28-29장",
+  "video": "MJJ5284bBNI",
+  "book": "deu",
+  "start": 28,
+  "end": 29
+ },
+ "02-28": {
+  "day": 59,
+  "range": "신명기 30-34장",
+  "video": "2jbNU7FioOo",
+  "book": "deu",
+  "start": 30,
+  "end": 34
+ },
+ "04-01": {
+  "day": 91,
+  "range": "사무엘하 1-3장",
+  "video": "9zNM_Evn-MI",
+  "book": "2sa",
+  "start": 1,
+  "end": 3
+ },
+ "04-02": {
+  "day": 92,
+  "range": "사무엘하 4-6장",
+  "video": "LuxwI5NXof8",
+  "book": "2sa",
+  "start": 4,
+  "end": 6
+ },
+ "04-03": {
+  "day": 93,
+  "range": "사무엘하 7-9장",
+  "video": "Hq9-bQoiFWA",
+  "book": "2sa",
+  "start": 7,
+  "end": 9
+ },
+ "04-04": {
+  "day": 94,
+  "range": "사무엘하 10-12장",
+  "video": "d3Z0cCkTOX4",
+  "book": "2sa",
+  "start": 10,
+  "end": 12
+ },
+ "04-05": {
+  "day": 95,
+  "range": "사무엘하 13-14장",
+  "video": "XLQu_He-LK8",
+  "book": "2sa",
+  "start": 13,
+  "end": 14
+ },
+ "04-06": {
+  "day": 96,
+  "range": "사무엘하 15-16장",
+  "video": "DslL3PSmzAw",
+  "book": "2sa",
+  "start": 15,
+  "end": 16
+ },
+ "04-07": {
+  "day": 97,
+  "range": "사무엘하 17-18장",
+  "video": "axlwsagsAJ0",
+  "book": "2sa",
+  "start": 17,
+  "end": 18
+ },
+ "04-08": {
+  "day": 98,
+  "range": "사무엘하 19-20장",
+  "video": "onvEGr5fvQI",
+  "book": "2sa",
+  "start": 19,
+  "end": 20
+ },
+ "04-09": {
+  "day": 99,
+  "range": "사무엘하 21-22장",
+  "video": "uo1xvLorjjE",
+  "book": "2sa",
+  "start": 21,
+  "end": 22
+ },
+ "04-10": {
+  "day": 100,
+  "range": "사무엘하 23-24장",
+  "video": "j5whHbbhNtI",
+  "book": "2sa",
+  "start": 23,
+  "end": 24
+ },
+ "04-11": {
+  "day": 101,
+  "range": "열왕기상 1-3장",
+  "video": "Nfi6IfmMNA4",
+  "book": "1ki",
+  "start": 1,
+  "end": 3
+ },
+ "04-12": {
+  "day": 102,
+  "range": "열왕기상 4-6장",
+  "video": "P2AFvtdKPg0",
+  "book": "1ki",
+  "start": 4,
+  "end": 6
+ },
+ "04-13": {
+  "day": 103,
+  "range": "열왕기상 7-9장",
+  "video": "40osxcYQdLE",
+  "book": "1ki",
+  "start": 7,
+  "end": 9
+ },
+ "04-14": {
+  "day": 104,
+  "range": "열왕기상 10-12장",
+  "video": "6zJzzlee6Ak",
+  "book": "1ki",
+  "start": 10,
+  "end": 12
+ },
+ "04-15": {
+  "day": 105,
+  "range": "열왕기상 13-14장",
+  "video": "KKyyWlvZRgM",
+  "book": "1ki",
+  "start": 13,
+  "end": 14
+ },
+ "04-16": {
+  "day": 106,
+  "range": "열왕기상 15-16장",
+  "video": "gltn_EXF-58",
+  "book": "1ki",
+  "start": 15,
+  "end": 16
+ },
+ "04-17": {
+  "day": 107,
+  "range": "열왕기상 17-18장",
+  "video": "atQkqC9s48g",
+  "book": "1ki",
+  "start": 17,
+  "end": 18
+ },
+ "04-18": {
+  "day": 108,
+  "range": "열왕기상 19-20장",
+  "video": "elcJNNAf7X0",
+  "book": "1ki",
+  "start": 19,
+  "end": 20
+ },
+ "04-19": {
+  "day": 109,
+  "range": "열왕기상 21-22장",
+  "video": "DUNR-OlcLkk",
+  "book": "1ki",
+  "start": 21,
+  "end": 22
+ },
+ "04-20": {
+  "day": 110,
+  "range": "열왕기하 1-2장",
+  "video": "SFbHwqobY9o",
+  "book": "2ki",
+  "start": 1,
+  "end": 2
+ },
+ "04-21": {
+  "day": 111,
+  "range": "열왕기하 3-4장",
+  "video": "bl2GjzFwEnc",
+  "book": "2ki",
+  "start": 3,
+  "end": 4
+ },
+ "04-22": {
+  "day": 112,
+  "range": "열왕기하 5-6장",
+  "video": "pm9bJV0Ssv4",
+  "book": "2ki",
+  "start": 5,
+  "end": 6
+ },
+ "04-23": {
+  "day": 113,
+  "range": "열왕기하 7-9장",
+  "video": "YAH1kHIH8po",
+  "book": "2ki",
+  "start": 7,
+  "end": 9
+ },
+ "04-24": {
+  "day": 114,
+  "range": "열왕기하 10-12장",
+  "video": "xhXhp-X7sfw",
+  "book": "2ki",
+  "start": 10,
+  "end": 12
+ },
+ "04-25": {
+  "day": 115,
+  "range": "열왕기하 13-14장",
+  "video": "Ql5SNFRvPvc",
+  "book": "2ki",
+  "start": 13,
+  "end": 14
+ },
+ "04-26": {
+  "day": 116,
+  "range": "열왕기하 15-16장",
+  "video": "VD3uKFm4OHM",
+  "book": "2ki",
+  "start": 15,
+  "end": 16
+ },
+ "04-27": {
+  "day": 117,
+  "range": "열왕기하 17-18장",
+  "video": "2uPBZ609Bbo",
+  "book": "2ki",
+  "start": 17,
+  "end": 18
+ },
+ "04-28": {
+  "day": 118,
+  "range": "열왕기하 19-20장",
+  "video": "K6Z84S0n5xk",
+  "book": "2ki",
+  "start": 19,
+  "end": 20
+ },
+ "04-29": {
+  "day": 119,
+  "range": "열왕기하 21-22장",
+  "video": "zoj1_4Ha5rc",
+  "book": "2ki",
+  "start": 21,
+  "end": 22
+ },
+ "04-30": {
+  "day": 120,
+  "range": "열왕기하 23-25장",
+  "video": "b7ZKjIvvCCI",
+  "book": "2ki",
+  "start": 23,
+  "end": 25
+ },
+ "05-01": {
+  "day": 121,
+  "range": "역대상 1-2장",
+  "video": "WKEGQnSgR3U",
+  "book": "1ch",
+  "start": 1,
+  "end": 2
+ },
+ "05-02": {
+  "day": 122,
+  "range": "역대상 3-4장",
+  "video": "1tTDifNe7b8",
+  "book": "1ch",
+  "start": 3,
+  "end": 4
+ },
+ "05-03": {
+  "day": 123,
+  "range": "역대상 5-6장",
+  "video": "CUq9YwCHe64",
+  "book": "1ch",
+  "start": 5,
+  "end": 6
+ },
+ "05-04": {
+  "day": 124,
+  "range": "역대상 7-8장",
+  "video": "LihEwXm_FQY",
+  "book": "1ch",
+  "start": 7,
+  "end": 8
+ },
+ "05-05": {
+  "day": 125,
+  "range": "역대상 9-10장",
+  "video": "fx1bueIrcoQ",
+  "book": "1ch",
+  "start": 9,
+  "end": 10
+ },
+ "05-06": {
+  "day": 126,
+  "range": "역대상 11-12장",
+  "video": "K-hU0eDKR10",
+  "book": "1ch",
+  "start": 11,
+  "end": 12
+ },
+ "05-07": {
+  "day": 127,
+  "range": "역대상 13-15장",
+  "video": "O6KdttmbKaE",
+  "book": "1ch",
+  "start": 13,
+  "end": 15
+ },
+ "05-08": {
+  "day": 128,
+  "range": "역대상 16-18장",
+  "video": "DH53wOpXOyM",
+  "book": "1ch",
+  "start": 16,
+  "end": 18
+ },
+ "05-09": {
+  "day": 129,
+  "range": "역대상 19-21장",
+  "video": "Eao4DgIFbOs",
+  "book": "1ch",
+  "start": 19,
+  "end": 21
+ },
+ "05-10": {
+  "day": 130,
+  "range": "역대상 22-23장",
+  "video": "gQy3LRAUiAQ",
+  "book": "1ch",
+  "start": 22,
+  "end": 23
+ },
+ "05-11": {
+  "day": 131,
+  "range": "역대상 24-25장",
+  "video": "ZiJApecTXCY",
+  "book": "1ch",
+  "start": 24,
+  "end": 25
+ },
+ "05-12": {
+  "day": 132,
+  "range": "역대상 26-27장",
+  "video": "6dM5XUSA0KA",
+  "book": "1ch",
+  "start": 26,
+  "end": 27
+ },
+ "05-13": {
+  "day": 133,
+  "range": "역대상 28-29장",
+  "video": "6K4c6k8lqQo",
+  "book": "1ch",
+  "start": 28,
+  "end": 29
+ },
+ "05-14": {
+  "day": 134,
+  "range": "역대하 1-3장",
+  "video": "YPpd6hvBToY",
+  "book": "2ch",
+  "start": 1,
+  "end": 3
+ },
+ "05-15": {
+  "day": 135,
+  "range": "역대하 4-5장",
+  "video": "lGv7UPtXvRs",
+  "book": "2ch",
+  "start": 4,
+  "end": 5
+ },
+ "05-16": {
+  "day": 136,
+  "range": "역대하 6-8장",
+  "video": "9ZTANXGGJ6I",
+  "book": "2ch",
+  "start": 6,
+  "end": 8
+ },
+ "05-17": {
+  "day": 137,
+  "range": "역대하 9-10장",
+  "video": "Ps5bJXltTHs",
+  "book": "2ch",
+  "start": 9,
+  "end": 10
+ },
+ "05-18": {
+  "day": 138,
+  "range": "역대하 11-13장",
+  "video": "iKwKEm_aLkw",
+  "book": "2ch",
+  "start": 11,
+  "end": 13
+ },
+ "05-19": {
+  "day": 139,
+  "range": "역대하 14-16장",
+  "video": "Mh6sLbYHBIw",
+  "book": "2ch",
+  "start": 14,
+  "end": 16
+ },
+ "05-20": {
+  "day": 140,
+  "range": "역대하 17-19장",
+  "video": "jm0v1aduOJ4",
+  "book": "2ch",
+  "start": 17,
+  "end": 19
+ },
+ "05-21": {
+  "day": 141,
+  "range": "역대하 20-21장",
+  "video": "bl8VPwZacII",
+  "book": "2ch",
+  "start": 20,
+  "end": 21
+ },
+ "05-22": {
+  "day": 142,
+  "range": "역대하 22-23장",
+  "video": "gLhpT0gADWs",
+  "book": "2ch",
+  "start": 22,
+  "end": 23
+ },
+ "05-23": {
+  "day": 143,
+  "range": "역대하 24-25장",
+  "video": "ZfzbEjDwgt8",
+  "book": "2ch",
+  "start": 24,
+  "end": 25
+ },
+ "05-24": {
+  "day": 144,
+  "range": "역대하 26-28장",
+  "video": "EFDM2TVhL_w",
+  "book": "2ch",
+  "start": 26,
+  "end": 28
+ },
+ "05-25": {
+  "day": 145,
+  "range": "역대하 29-30장",
+  "video": "jsKLRfcqbYk",
+  "book": "2ch",
+  "start": 29,
+  "end": 30
+ },
+ "05-26": {
+  "day": 146,
+  "range": "역대하 31-32장",
+  "video": "a6Wolydt5XE",
+  "book": "2ch",
+  "start": 31,
+  "end": 32
+ },
+ "05-27": {
+  "day": 147,
+  "range": "역대하 33-34장",
+  "video": "eUryDzTFy6w",
+  "book": "2ch",
+  "start": 33,
+  "end": 34
+ },
+ "05-28": {
+  "day": 148,
+  "range": "역대하 35-36장",
+  "video": "yCeuKG5djYU",
+  "book": "2ch",
+  "start": 35,
+  "end": 36
+ },
+ "05-29": {
+  "day": 149,
+  "range": "에스라 1-3장",
+  "video": "SMNUaznQX-I",
+  "book": "ezr",
+  "start": 1,
+  "end": 3
+ },
+ "05-30": {
+  "day": 150,
+  "range": "에스라 4-6장",
+  "video": "3HcFeN5WdOo",
+  "book": "ezr",
+  "start": 4,
+  "end": 6
+ },
+ "05-31": {
+  "day": 151,
+  "range": "에스라 7-10장",
+  "video": "goTUBLDhoLQ",
+  "book": "ezr",
+  "start": 7,
+  "end": 10
+ },
+ "09-01": {
+  "day": 244,
+  "range": "다니엘 1-3장",
+  "video": "peQiYiGP9kM",
+  "book": "dan",
+  "start": 1,
+  "end": 3
+ },
+ "09-02": {
+  "day": 245,
+  "range": "다니엘 4-7장",
+  "video": "8vWETZpcndI",
+  "book": "dan",
+  "start": 4,
+  "end": 7
+ },
+ "09-03": {
+  "day": 246,
+  "range": "다니엘 8-12장",
+  "video": "8pxIVf-Dg1A",
+  "book": "dan",
+  "start": 8,
+  "end": 12
+ },
+ "09-04": {
+  "day": 247,
+  "range": "호세아 1-7장",
+  "video": "actlZFDqTDI",
+  "book": "hos",
+  "start": 1,
+  "end": 7
+ },
+ "09-05": {
+  "day": 248,
+  "range": "호세아 8-14장",
+  "video": "9F6wm-5f810",
+  "book": "hos",
+  "start": 8,
+  "end": 14
+ },
+ "09-06": {
+  "day": 249,
+  "range": "요엘 1-3장",
+  "video": "bcTMdQ54oxI",
+  "book": "jol",
+  "start": 1,
+  "end": 3
+ },
+ "09-07": {
+  "day": 250,
+  "range": "아모스 1-4장",
+  "video": "ICB_Ts16pWU",
+  "book": "amo",
+  "start": 1,
+  "end": 4
+ },
+ "09-08": {
+  "day": 251,
+  "range": "아모스 5-9장",
+  "video": "et_0V8jm3fo",
+  "book": "amo",
+  "start": 5,
+  "end": 9
+ },
+ "09-09": {
+  "day": 252,
+  "range": "오바댜 1장",
+  "video": "i2vMDqaGafs",
+  "book": "oba",
+  "start": 1,
+  "end": 1
+ },
+ "09-10": {
+  "day": 253,
+  "range": "요나 1-4장",
+  "video": "hO623MJBI08",
+  "book": "jnh",
+  "start": 1,
+  "end": 4
+ },
+ "09-11": {
+  "day": 254,
+  "range": "미가 1-4장",
+  "video": "J-YmgMFEeqI",
+  "book": "mic",
+  "start": 1,
+  "end": 4
+ },
+ "09-12": {
+  "day": 255,
+  "range": "미가 5-7장",
+  "video": "fpeJMVakUTI",
+  "book": "mic",
+  "start": 5,
+  "end": 7
+ },
+ "09-13": {
+  "day": 256,
+  "range": "나훔 1-3장",
+  "video": "q_GcMmIkdXk",
+  "book": "nam",
+  "start": 1,
+  "end": 3
+ },
+ "09-14": {
+  "day": 257,
+  "range": "하박국 1-3장",
+  "video": "8bdgDJXjYt8",
+  "book": "hab",
+  "start": 1,
+  "end": 3
+ },
+ "09-15": {
+  "day": 258,
+  "range": "스바냐 1-3장",
+  "video": "FBKyMHIRxis",
+  "book": "zep",
+  "start": 1,
+  "end": 3
+ },
+ "09-16": {
+  "day": 259,
+  "range": "학개 1-2장",
+  "video": "XhXppKo85Us",
+  "book": "hag",
+  "start": 1,
+  "end": 2
+ },
+ "09-17": {
+  "day": 260,
+  "range": "스가랴 1-4장",
+  "video": "lZ1pnKujOKI",
+  "book": "zec",
+  "start": 1,
+  "end": 4
+ },
+ "09-18": {
+  "day": 261,
+  "range": "스가랴 5-8장",
+  "video": "NHbR1NMVZH0",
+  "book": "zec",
+  "start": 5,
+  "end": 8
+ },
+ "09-19": {
+  "day": 262,
+  "range": "스가랴 9-11장",
+  "video": "V0pMNNMP6v4",
+  "book": "zec",
+  "start": 9,
+  "end": 11
+ },
+ "09-20": {
+  "day": 263,
+  "range": "스가랴 12-14장",
+  "video": "bXJTNS7u5-M",
+  "book": "zec",
+  "start": 12,
+  "end": 14
+ },
+ "09-21": {
+  "day": 264,
+  "range": "말라기 1-4장",
+  "video": "x3gSnD8vbwA",
+  "book": "mal",
+  "start": 1,
+  "end": 4
+ },
+ "09-22": {
+  "day": 265,
+  "range": "마태복음 1-4장",
+  "video": "54CM8gI6YDI",
+  "book": "mat",
+  "start": 1,
+  "end": 4
+ },
+ "09-23": {
+  "day": 266,
+  "range": "마태복음 5-7장",
+  "video": "cyHxVEYItZw",
+  "book": "mat",
+  "start": 5,
+  "end": 7
+ },
+ "09-24": {
+  "day": 267,
+  "range": "마태복음 8-10장",
+  "video": "LYhOv8tyR-o",
+  "book": "mat",
+  "start": 8,
+  "end": 10
+ },
+ "09-25": {
+  "day": 268,
+  "range": "마태복음 11-13장",
+  "video": "0IbvI-OC_YU",
+  "book": "mat",
+  "start": 11,
+  "end": 13
+ },
+ "09-26": {
+  "day": 269,
+  "range": "마태복음 14-16장",
+  "video": "gZvI_c0zwsQ",
+  "book": "mat",
+  "start": 14,
+  "end": 16
+ },
+ "09-27": {
+  "day": 270,
+  "range": "마태복음 17-19장",
+  "video": "5b2PzA3xzNk",
+  "book": "mat",
+  "start": 17,
+  "end": 19
+ },
+ "09-28": {
+  "day": 271,
+  "range": "마태복음 20-22장",
+  "video": "-SaFGv033P0",
+  "book": "mat",
+  "start": 20,
+  "end": 22
+ },
+ "09-29": {
+  "day": 272,
+  "range": "마태복음 23-25장",
+  "video": "_YK_2U2MeTg",
+  "book": "mat",
+  "start": 23,
+  "end": 25
+ },
+ "09-30": {
+  "day": 273,
+  "range": "마태복음 26-28장",
+  "video": "Q7xXXs5hszM",
+  "book": "mat",
+  "start": 26,
+  "end": 28
+ },
+ "10-01": {
+  "day": 274,
+  "range": "마가복음 1-2장",
+  "video": "_oTvgRrBnPE",
+  "book": "mrk",
+  "start": 1,
+  "end": 2
+ },
+ "10-02": {
+  "day": 275,
+  "range": "마가복음 3-4장",
+  "video": "Rmewf_e2heI",
+  "book": "mrk",
+  "start": 3,
+  "end": 4
+ },
+ "10-03": {
+  "day": 276,
+  "range": "마가복음 5-6장",
+  "video": "u4KUkOgtWt0",
+  "book": "mrk",
+  "start": 5,
+  "end": 6
+ },
+ "10-04": {
+  "day": 277,
+  "range": "마가복음 7-8장",
+  "video": "F6twTOz2_7Y",
+  "book": "mrk",
+  "start": 7,
+  "end": 8
+ },
+ "10-05": {
+  "day": 278,
+  "range": "마가복음 9-10장",
+  "video": "AjUtb3YznjY",
+  "book": "mrk",
+  "start": 9,
+  "end": 10
+ },
+ "10-06": {
+  "day": 279,
+  "range": "마가복음 11-12장",
+  "video": "q1I5c6rOvqE",
+  "book": "mrk",
+  "start": 11,
+  "end": 12
+ },
+ "10-07": {
+  "day": 280,
+  "range": "마가복음 13-14장",
+  "video": "WTXvRrUGnbA",
+  "book": "mrk",
+  "start": 13,
+  "end": 14
+ },
+ "10-08": {
+  "day": 281,
+  "range": "마가복음 15-16장",
+  "video": "K6kLg6lo5v4",
+  "book": "mrk",
+  "start": 15,
+  "end": 16
+ },
+ "10-09": {
+  "day": 282,
+  "range": "누가복음 1장",
+  "video": "oE2ckztSV0A",
+  "book": "luk",
+  "start": 1,
+  "end": 1
+ },
+ "10-10": {
+  "day": 283,
+  "range": "누가복음 2-3장",
+  "video": "oRE-WbYryfI",
+  "book": "luk",
+  "start": 2,
+  "end": 3
+ },
+ "10-12": {
+  "day": 285,
+  "range": "누가복음 6-7장",
+  "video": "Kg9izLR3bXE",
+  "book": "luk",
+  "start": 6,
+  "end": 7
+ },
+ "10-13": {
+  "day": 286,
+  "range": "누가복음 8장",
+  "video": "YDP9VKkAQJU",
+  "book": "luk",
+  "start": 8,
+  "end": 8
+ },
+ "10-14": {
+  "day": 287,
+  "range": "누가복음 9-10장",
+  "video": "GOgJcQ8pXkE",
+  "book": "luk",
+  "start": 9,
+  "end": 10
+ },
+ "10-15": {
+  "day": 288,
+  "range": "누가복음 11-12장",
+  "video": "q0OQfkbgjXE",
+  "book": "luk",
+  "start": 11,
+  "end": 12
+ },
+ "10-16": {
+  "day": 289,
+  "range": "누가복음 13-14장",
+  "video": "RQ6HERBcxxo",
+  "book": "luk",
+  "start": 13,
+  "end": 14
+ },
+ "10-17": {
+  "day": 290,
+  "range": "누가복음 15-16장",
+  "video": "YJ5pm2Pdfu0",
+  "book": "luk",
+  "start": 15,
+  "end": 16
+ },
+ "10-18": {
+  "day": 291,
+  "range": "누가복음 17-18장",
+  "video": "GMMqsydUH7w",
+  "book": "luk",
+  "start": 17,
+  "end": 18
+ },
+ "10-19": {
+  "day": 292,
+  "range": "누가복음 19-20장",
+  "video": "gYUQLVqHX30",
+  "book": "luk",
+  "start": 19,
+  "end": 20
+ },
+ "10-20": {
+  "day": 293,
+  "range": "누가복음 21-22장",
+  "video": "7wygTNpxOKE",
+  "book": "luk",
+  "start": 21,
+  "end": 22
+ },
+ "10-21": {
+  "day": 294,
+  "range": "누가복음 23-24장",
+  "video": "ZwChpNN4kp4",
+  "book": "luk",
+  "start": 23,
+  "end": 24
+ },
+ "10-22": {
+  "day": 295,
+  "range": "요한복음 1-2장",
+  "video": "5AogYmP67CM",
+  "book": "jhn",
+  "start": 1,
+  "end": 2
+ },
+ "10-23": {
+  "day": 296,
+  "range": "요한복음 3-4장",
+  "video": "-fZxNbsJny0",
+  "book": "jhn",
+  "start": 3,
+  "end": 4
+ },
+ "10-24": {
+  "day": 297,
+  "range": "요한복음 5-6장",
+  "video": "N9aodEU2I54",
+  "book": "jhn",
+  "start": 5,
+  "end": 6
+ },
+ "10-25": {
+  "day": 298,
+  "range": "요한복음 7-8장",
+  "video": "JFYIL_21_x0",
+  "book": "jhn",
+  "start": 7,
+  "end": 8
+ },
+ "10-26": {
+  "day": 299,
+  "range": "요한복음 9-10장",
+  "video": "bMvpBZsDl7U",
+  "book": "jhn",
+  "start": 9,
+  "end": 10
+ },
+ "10-27": {
+  "day": 300,
+  "range": "요한복음 11-12장",
+  "video": "-7fDouVhF-A",
+  "book": "jhn",
+  "start": 11,
+  "end": 12
+ },
+ "10-28": {
+  "day": 301,
+  "range": "요한복음 13-14장",
+  "video": "xIWbsAv4stk",
+  "book": "jhn",
+  "start": 13,
+  "end": 14
+ },
+ "10-29": {
+  "day": 302,
+  "range": "요한복음 15-17장",
+  "video": "JwygzVFBDFI",
+  "book": "jhn",
+  "start": 15,
+  "end": 17
+ },
+ "10-30": {
+  "day": 303,
+  "range": "요한복음 18-19장",
+  "video": "KImxVd7LkLI",
+  "book": "jhn",
+  "start": 18,
+  "end": 19
+ },
+ "10-31": {
+  "day": 304,
+  "range": "요한복음 20-21장",
+  "video": "H3GC2Sso1AU",
+  "book": "jhn",
+  "start": 20,
+  "end": 21
+ },
+ "11-01": {
+  "day": 305,
+  "range": "사도행전 1-3장",
+  "video": "_K-IK7_MkbU",
+  "book": "act",
+  "start": 1,
+  "end": 3
+ },
+ "11-02": {
+  "day": 306,
+  "range": "사도행전 4-6장",
+  "video": "JagQZTNL_pQ",
+  "book": "act",
+  "start": 4,
+  "end": 6
+ },
+ "11-03": {
+  "day": 307,
+  "range": "사도행전 7-9장",
+  "video": "CW2PFxYSp7Y",
+  "book": "act",
+  "start": 7,
+  "end": 9
+ },
+ "11-04": {
+  "day": 308,
+  "range": "사도행전 10-12장",
+  "video": "65Yq52IAdPI",
+  "book": "act",
+  "start": 10,
+  "end": 12
+ },
+ "11-05": {
+  "day": 309,
+  "range": "사도행전 13-15장",
+  "video": "ZbvJyS-0dw0",
+  "book": "act",
+  "start": 13,
+  "end": 15
+ },
+ "11-06": {
+  "day": 310,
+  "range": "사도행전 16-18장",
+  "video": "NloVqP3XjGE",
+  "book": "act",
+  "start": 16,
+  "end": 18
+ },
+ "11-07": {
+  "day": 311,
+  "range": "사도행전 19-21장",
+  "video": "uCsIYw76Dks",
+  "book": "act",
+  "start": 19,
+  "end": 21
+ },
+ "11-08": {
+  "day": 312,
+  "range": "사도행전 22-24장",
+  "video": "wVQn24hNt4w",
+  "book": "act",
+  "start": 22,
+  "end": 24
+ },
+ "11-09": {
+  "day": 313,
+  "range": "사도행전 25-28장",
+  "video": "C2puC_eGOuQ",
+  "book": "act",
+  "start": 25,
+  "end": 28
+ },
+ "11-10": {
+  "day": 314,
+  "range": "로마서 1-4장",
+  "video": "gRCjSp5P7zQ",
+  "book": "rom",
+  "start": 1,
+  "end": 4
+ },
+ "11-11": {
+  "day": 315,
+  "range": "로마서 5-8장",
+  "video": "vJmdG0el1nc",
+  "book": "rom",
+  "start": 5,
+  "end": 8
+ },
+ "11-12": {
+  "day": 316,
+  "range": "로마서 9-12장",
+  "video": "N7quuNm2lhM",
+  "book": "rom",
+  "start": 9,
+  "end": 12
+ },
+ "11-13": {
+  "day": 317,
+  "range": "로마서 13-16장",
+  "video": "_CutBn2o08o",
+  "book": "rom",
+  "start": 13,
+  "end": 16
+ },
+ "11-14": {
+  "day": 318,
+  "range": "고린도전서 1-3장",
+  "video": "q11qAEcCaX8",
+  "book": "1co",
+  "start": 1,
+  "end": 3
+ },
+ "11-15": {
+  "day": 319,
+  "range": "고린도전서 4-7장",
+  "video": "tsBavNe1WIQ",
+  "book": "1co",
+  "start": 4,
+  "end": 7
+ },
+ "11-16": {
+  "day": 320,
+  "range": "고린도전서 8-10장",
+  "video": "7KD07UDgXkk",
+  "book": "1co",
+  "start": 8,
+  "end": 10
+ },
+ "11-17": {
+  "day": 321,
+  "range": "고린도전서 11-13장",
+  "video": "aoZLAnDRbEQ",
+  "book": "1co",
+  "start": 11,
+  "end": 13
+ },
+ "11-18": {
+  "day": 322,
+  "range": "고린도전서 14-16장",
+  "video": "mTvsabmQ8ZA",
+  "book": "1co",
+  "start": 14,
+  "end": 16
+ },
+ "11-19": {
+  "day": 323,
+  "range": "고린도후서 1-3장",
+  "video": "VaD2sokPtH8",
+  "book": "2co",
+  "start": 1,
+  "end": 3
+ },
+ "11-20": {
+  "day": 324,
+  "range": "고린도후서 4-7장",
+  "video": "xUGTsremZko",
+  "book": "2co",
+  "start": 4,
+  "end": 7
+ },
+ "11-21": {
+  "day": 325,
+  "range": "고린도후서 8-10장",
+  "video": "Ihk8C6vyWyU",
+  "book": "2co",
+  "start": 8,
+  "end": 10
+ },
+ "11-22": {
+  "day": 326,
+  "range": "고린도후서 11-13장",
+  "video": "oxpDIo3pva8",
+  "book": "2co",
+  "start": 11,
+  "end": 13
+ },
+ "11-23": {
+  "day": 327,
+  "range": "갈라디아서 1-3장",
+  "video": "h0-CTebrBY8",
+  "book": "gal",
+  "start": 1,
+  "end": 3
+ },
+ "11-24": {
+  "day": 328,
+  "range": "갈라디아서 4-6장",
+  "video": "OjyBQOmBYGM",
+  "book": "gal",
+  "start": 4,
+  "end": 6
+ },
+ "11-25": {
+  "day": 329,
+  "range": "에베소서 1-3장",
+  "video": "WSSbSGY4rno",
+  "book": "eph",
+  "start": 1,
+  "end": 3
+ },
+ "11-26": {
+  "day": 330,
+  "range": "에베소서 4-6장",
+  "video": "dtqe7OqDEMo",
+  "book": "eph",
+  "start": 4,
+  "end": 6
+ },
+ "11-27": {
+  "day": 331,
+  "range": "빌립보서 1-4장",
+  "video": "gAOJfEXhAt0",
+  "book": "php",
+  "start": 1,
+  "end": 4
+ },
+ "11-28": {
+  "day": 332,
+  "range": "골로새서 1-4장",
+  "video": "agIhlCTss20",
+  "book": "col",
+  "start": 1,
+  "end": 4
+ },
+ "11-29": {
+  "day": 333,
+  "range": "데살로니가전서 1-5장",
+  "video": "6RGLt2kzyfk",
+  "book": "1th",
+  "start": 1,
+  "end": 5
+ },
+ "11-30": {
+  "day": 334,
+  "range": "데살로니가후서 1-3장",
+  "video": "Ko8NpfpGbCs",
+  "book": "2th",
+  "start": 1,
+  "end": 3
+ },
+ "12-01": {
+  "day": 335,
+  "range": "디모데전서 1-3장",
+  "video": "Ky0SIF8--7Y",
+  "book": "1ti",
+  "start": 1,
+  "end": 3
+ },
+ "12-02": {
+  "day": 336,
+  "range": "디모데전서 4-6장",
+  "video": "xrG2Nny96_0",
+  "book": "1ti",
+  "start": 4,
+  "end": 6
+ },
+ "12-03": {
+  "day": 337,
+  "range": "디모데후서 1-2장",
+  "video": "ny_tVo6t97I",
+  "book": "2ti",
+  "start": 1,
+  "end": 2
+ },
+ "12-04": {
+  "day": 338,
+  "range": "디모데후서 3-4장",
+  "video": "BfoEOxriuIQ",
+  "book": "2ti",
+  "start": 3,
+  "end": 4
+ },
+ "12-05": {
+  "day": 339,
+  "range": "디도서 1-2장",
+  "video": "iMkbQX1vbWU",
+  "book": "tit",
+  "start": 1,
+  "end": 2
+ },
+ "12-06": {
+  "day": 340,
+  "range": "디도서 3장, 빌레몬서 1장",
+  "video": "0aghfrBz2mQ",
+  "book": "tit",
+  "start": 3,
+  "end": 3
+ },
+ "12-07": {
+  "day": 341,
+  "range": "히브리서 1-2장",
+  "video": "ucCAFI4f4Sg",
+  "book": "heb",
+  "start": 1,
+  "end": 2
+ },
+ "12-08": {
+  "day": 342,
+  "range": "히브리서 3-4장",
+  "video": "OlTUau3WArI",
+  "book": "heb",
+  "start": 3,
+  "end": 4
+ },
+ "12-09": {
+  "day": 343,
+  "range": "히브리서 5-6장",
+  "video": "AiZJLfLx2XM",
+  "book": "heb",
+  "start": 5,
+  "end": 6
+ },
+ "12-10": {
+  "day": 344,
+  "range": "히브리서 7-8장",
+  "video": "QuDQnOXPYaM",
+  "book": "heb",
+  "start": 7,
+  "end": 8
+ },
+ "12-11": {
+  "day": 345,
+  "range": "히브리서 9-10장",
+  "video": "r0DQ2V7l0qE",
+  "book": "heb",
+  "start": 9,
+  "end": 10
+ },
+ "12-12": {
+  "day": 346,
+  "range": "히브리서 11장",
+  "video": "J08la4jWEY0",
+  "book": "heb",
+  "start": 11,
+  "end": 11
+ },
+ "12-13": {
+  "day": 347,
+  "range": "히브리서 12-13장",
+  "video": "it4DntogKUY",
+  "book": "heb",
+  "start": 12,
+  "end": 13
+ },
+ "12-14": {
+  "day": 348,
+  "range": "야고보서 1-2장",
+  "video": "zXV3y-qAKU0",
+  "book": "jas",
+  "start": 1,
+  "end": 2
+ },
+ "12-15": {
+  "day": 349,
+  "range": "야고보서 3-5장",
+  "video": "wi7IMBsGUHs",
+  "book": "jas",
+  "start": 3,
+  "end": 5
+ },
+ "12-16": {
+  "day": 350,
+  "range": "베드로전서 1-3장",
+  "video": "Pl22rRAUbPo",
+  "book": "1pe",
+  "start": 1,
+  "end": 3
+ },
+ "12-17": {
+  "day": 351,
+  "range": "베드로전서 4-5장",
+  "video": "Ssn81EbuLTQ",
+  "book": "1pe",
+  "start": 4,
+  "end": 5
+ },
+ "12-18": {
+  "day": 352,
+  "range": "베드로후서 1-3장",
+  "video": "vYhIQRqb8xg",
+  "book": "2pe",
+  "start": 1,
+  "end": 3
+ },
+ "12-19": {
+  "day": 353,
+  "range": "요한일서 1-3장",
+  "video": "f2axxTHug64",
+  "book": "1jn",
+  "start": 1,
+  "end": 3
+ },
+ "12-20": {
+  "day": 354,
+  "range": "요한일서 4-5장",
+  "video": "Qln__s9J4jY",
+  "book": "1jn",
+  "start": 4,
+  "end": 5
+ },
+ "12-21": {
+  "day": 355,
+  "range": "요이, 요삼, 유다서",
+  "video": "HBuZcUu-NEQ",
+  "book": "",
+  "start": 0,
+  "end": 0
+ },
+ "12-22": {
+  "day": 356,
+  "range": "요한계시록 1-2장",
+  "video": "_0IiteOP_Sw",
+  "book": "rev",
+  "start": 1,
+  "end": 2
+ },
+ "12-23": {
+  "day": 357,
+  "range": "요한계시록 3-5장",
+  "video": "AfkuKlyB6VE",
+  "book": "rev",
+  "start": 3,
+  "end": 5
+ },
+ "12-24": {
+  "day": 358,
+  "range": "요한계시록 6-7장",
+  "video": "IM4VDYRgFVY",
+  "book": "rev",
+  "start": 6,
+  "end": 7
+ },
+ "12-25": {
+  "day": 359,
+  "range": "요한계시록 8-10장",
+  "video": "be_iIh7qFAs",
+  "book": "rev",
+  "start": 8,
+  "end": 10
+ },
+ "12-26": {
+  "day": 360,
+  "range": "요한계시록 11-12장",
+  "video": "LvXrzVkbZIM",
+  "book": "rev",
+  "start": 11,
+  "end": 12
+ },
+ "12-27": {
+  "day": 361,
+  "range": "요한계시록 13-14장",
+  "video": "C-5ZPLLL8b8",
+  "book": "rev",
+  "start": 13,
+  "end": 14
+ },
+ "12-28": {
+  "day": 362,
+  "range": "요한계시록 15-16장",
+  "video": "iEykr4LlSAE",
+  "book": "rev",
+  "start": 15,
+  "end": 16
+ },
+ "12-29": {
+  "day": 363,
+  "range": "요한계시록 17-18장",
+  "video": "vQfkYL1j3ZY",
+  "book": "rev",
+  "start": 17,
+  "end": 18
+ },
+ "12-30": {
+  "day": 364,
+  "range": "요한계시록 19-20장",
+  "video": "O1Jy-b858hY",
+  "book": "rev",
+  "start": 19,
+  "end": 20
+ },
+ "12-31": {
+  "day": 365,
+  "range": "요한계시록 21-22장",
+  "video": "aeXilZ7-_rU",
+  "book": "rev",
+  "start": 21,
+  "end": 22
+ }
+}

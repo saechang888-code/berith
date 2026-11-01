@@ -97,10 +97,7 @@
         <div class="bar"><i style="width:${pct}%"></i></div>
         <span class="muted" style="font-size:12px">${t.dleft != null ? `완주까지 D-${t.dleft} · ` : ''}오늘부터 시작해도 함께 걸어요</span>
       </div>` : ''}
-      <div class="grid2">
-        <a href="#/record" class="outline" style="display:flex;flex-direction:column;gap:10px">${ico('pen', '#C6E6A3')}<span style="font-size:15px;font-weight:500">나의 베리트</span><span class="muted" style="font-size:12px">오늘 받은 마음 기록</span></a>
-        <a href="#/church/seam" class="outline" style="display:flex;flex-direction:column;gap:10px">${ico('play', '#C6E6A3')}<span style="font-size:15px;font-weight:500">이주의 설교</span><span class="muted" style="font-size:12px">${D.sermon ? esc(D.sermon.title) : '새암교회'}</span></a>
-      </div>
+      <a href="#/record" class="outline" style="display:flex;align-items:center;gap:14px">${ico('pen', '#C6E6A3')}<span style="flex:1;display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;font-weight:500">나의 베리트</span><span class="muted" style="font-size:12px">오늘 받은 마음 기록</span></span>${ico('next', '#A9BBA5', 18)}</a>
     </main>${tabbar('home')}`;
   }
 
@@ -274,6 +271,7 @@
         <span style="display:flex;gap:3px;height:7px">${worship ? dot('#FF4FC4') : ''}${med ? dot('#4DA3FF') : ''}${ev ? dot('#C6E6A3') : ''}</span></button>`);
     }
     const sd = new Date(sel + 'T00:00:00+09:00'), selRecs = store.get('records', []).filter(r => r.date === sel);
+    const selPlan = (D.today && D.today.date === sel && D.today) || (D.plan || {})[sel.slice(5)];   // 그날의 베리트365 영상
     const selW = watched()[sel] || {}, selEv = (events[sel] || []).slice().sort((a, b) => (a.time || '').localeCompare(b.time || ''));
     const editId = store.get('evEdit', null);
     return `<main style="gap:20px">
@@ -297,6 +295,13 @@
           ${selW.done ? '<span class="muted" style="font-size:12px">· 말씀 영상 시청 완료</span>' : ''}
           ${selRecs.map(r => `<span class="muted" style="font-size:12px">· ${esc(r.type)} 기록: ${esc(r.note.slice(0, 40))}${r.note.length > 40 ? '…' : ''}</span>`).join('')}
         </div>
+        ${selPlan ? `<div style="display:flex;flex-direction:column;gap:8px">
+          <div class="video" id="cbox"><img src="${yt(selPlan.video)}" alt="">
+            <button class="play" id="cplay" data-vid="${esc(selPlan.video)}" aria-label="${esc(selPlan.range)} 베리트365 영상 재생"><span>${ico('play', '#C6E6A3', 22)}</span></button></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+            <span style="display:flex;flex-direction:column;gap:2px"><span class="eyebrow" style="font-size:11px">${selPlan.day}일째 베리트</span><span style="font-size:15px">${esc(selPlan.range)}</span></span>
+            ${selPlan.book ? `<a href="#/bible/${esc(selPlan.book)}/${selPlan.start}" class="chip" style="display:flex;align-items:center;flex-shrink:0">말씀 읽기</a>` : ''}
+          </div></div>` : `<span class="muted" style="font-size:12px">이날의 베리트365 영상을 찾지 못했어요.</span>`}
         <div style="height:1px;background:var(--line)"></div>
         ${selEv.map(e => e.id === editId
           // 누른 일정: 그 자리에서 바로 고친다
@@ -449,7 +454,7 @@
       }
       route(); return;
     }
-    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#edsave,#vplay,#splay');
+    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#edsave,#vplay,#splay,#cplay');
     if (!el) return;
     if (el.dataset.day) { store.set('calSel', el.dataset.day); store.set('evEdit', null); route(); return; }
     if (el.dataset.evedit || el.dataset.evcancel) {
@@ -495,6 +500,7 @@
     if (el.dataset.ctab) { store.set('ctab', el.dataset.ctab); route(); }
     if (el.id === 'vplay') mountPlayer(document.getElementById('vbox'), D.today.video, true);
     if (el.id === 'splay') mountPlayer(document.getElementById('sbox'), D.sermon.video, false);
+    if (el.id === 'cplay') mountPlayer(document.getElementById('cbox'), el.dataset.vid, store.get('calSel', todayKey()) === todayKey());
     if (el.dataset.save) {
       const note = document.getElementById('note').value.trim();
       if (!note) { toast('받은 마음을 한 줄이라도 적어 주세요'); return; }
@@ -508,8 +514,8 @@
   window.addEventListener('hashchange', route);
 
   const bust = '?d=' + todayKey();
-  Promise.all(['today', 'sermon', 'churches'].map(n => fetch('data/' + n + '.json' + bust).then(r => r.ok ? r.json() : null).catch(() => null)))
-    .then(([t, s, c]) => { D.today = t; D.sermon = s; D.churches = c || []; route(); });
+  Promise.all(['today', 'sermon', 'churches', 'plan'].map(n => fetch('data/' + n + '.json' + bust).then(r => r.ok ? r.json() : null).catch(() => null)))
+    .then(([t, s, c, p]) => { D.today = t; D.sermon = s; D.churches = c || []; D.plan = p || {}; route(); });
   route();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();
