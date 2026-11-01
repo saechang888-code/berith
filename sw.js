@@ -1,6 +1,6 @@
 // 앱 껍데기를 기기에 저장해 두어 인터넷이 끊겨도 열리게 한다
-const CACHE = 'berith-v2';
-const SHELL = ['./', 'index.html', 'css/app.css', 'js/app.js', 'manifest.webmanifest', 'images/icon-192.png', 'images/seam-vision-center.jpg'];
+const CACHE = 'berith-v3';
+const SHELL = ['./', 'index.html', 'css/app.css', 'js/app.js', 'manifest.webmanifest', 'images/icon-192.png', 'images/berith-logo.png', 'images/seam-vision-center.jpg'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))));

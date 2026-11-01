@@ -47,8 +47,8 @@
         ${[150, 215, 285, 360].map((r, i) => `<circle cx="210" cy="490" r="${r}" fill="none" stroke="rgba(198,230,163,${[.32, .2, .12, .07][i]})"/>`).join('')}
         <circle cx="210" cy="340" r="5" fill="#C6E6A3"/></svg>
       <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
-        <span style="font-size:11px;letter-spacing:.4em;color:var(--accent-hi)">BERITH 365</span>
-        <span class="serif" style="font-size:40px;font-weight:700;letter-spacing:.06em">베리트</span>
+        <img src="images/berith-logo.png" alt="Berith planner 베리트" width="112" height="112" style="border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.35)">
+        <span class="serif" style="margin-top:6px;font-size:30px;font-weight:700;letter-spacing:.06em">베리트 365</span>
         <span class="muted" style="font-size:14px">하나님과 맺는 매일의 언약</span>
         <span style="margin-top:6px;padding:6px 14px;border-radius:16px;border:1px solid rgba(198,230,163,.45);font-size:13px;letter-spacing:.08em;color:var(--accent-hi)">누구나, 그리고 각 교회로</span>
       </div>
