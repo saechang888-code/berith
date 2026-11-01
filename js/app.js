@@ -257,7 +257,7 @@
   function viewChurches() {
     return `<main style="gap:22px">
       <div style="display:flex;flex-direction:column;gap:6px">
-        <span class="eyebrow">CHURCHES</span><h1>함께하는 교회</h1>
+        <span class="eyebrow">SEAM CHURCH</span><h1>새암교회</h1>
         <span class="muted" style="font-size:13px">교회를 누르면 그 교회의 소식·설교·예배로 들어갑니다.</span>
       </div>
       ${D.churches.map((c, i) => `<a href="#/church/${c.id}" style="position:relative;height:200px;border-radius:22px;overflow:hidden;display:block">
