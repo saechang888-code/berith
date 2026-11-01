@@ -1,0 +1,22 @@
+name: 오늘의 베리트·이주의 설교 갱신
+on:
+  schedule:
+    - cron: '30 19,22 * * *'   # 한국 시각 새벽 4:30, 아침 7:00
+    - cron: '0 4,7,10 * * 0'   # 주일 오후 1·4·7시 (설교 영상 올라오는 날)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/update.py
+      - run: |
+          git config user.name "berith-bot"
+          git config user.email "berith-bot@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || (git commit -m "자료 갱신 $(TZ=Asia/Seoul date +%F)" && git push)

@@ -1,0 +1,27 @@
+[
+ {
+  "id": "seam",
+  "name": "새암교회",
+  "en": "SEAM CHURCH",
+  "denom": "대한예수교장로회(합동)",
+  "area": "용인 수지 동천동",
+  "address": "경기 용인시 수지구 고기로 165 (동천동 70-2)",
+  "photo": "images/seam-vision-center.jpg",
+  "sermonFile": "sermon.json",
+  "worship": [
+   {"name": "주일 1부", "time": "오전 9:00"},
+   {"name": "주일 2부", "time": "오전 11:00"},
+   {"name": "새벽기도회", "time": "매일 6:00"},
+   {"name": "금요기도회", "time": "저녁 8:30"}
+  ],
+  "news": [
+   {"month": "12월", "day": "6", "title": "2026 행복나눔축제", "desc": "방송인 이성미 집사 초청 간증집회 · 주일 오전 11시", "url": "https://youtu.be/El1bHjQfXKc"}
+  ],
+  "links": [
+   {"name": "교회 홈페이지", "url": "https://saechang888-code.github.io/seamchurch/"},
+   {"name": "유튜브 「[새암교회]비전센터」", "url": "https://www.youtube.com/@seamvision"},
+   {"name": "네이버 카페 「용인새암교회」", "url": "https://cafe.naver.com/onreseam"},
+   {"name": "오시는 길 (네이버 지도)", "url": "https://map.naver.com/p/entry/place/2074957722"}
+  ]
+ }
+]
