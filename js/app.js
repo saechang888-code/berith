@@ -148,8 +148,8 @@
       <div role="tablist" aria-label="기록 종류" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:4px;border-radius:14px;background:var(--surface)">
         ${TYPES.map(x => `<button role="tab" aria-selected="${x === type}" data-type="${x}" style="height:40px;border:0;border-radius:10px;font-size:13px;${x === type ? 'background:var(--accent);color:var(--bg);font-weight:700' : 'background:none;color:var(--muted)'}">${x}</button>`).join('')}
       </div>
-      <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="verse">${type === '묵상' ? '마음에 닿은 구절' : '제목'}</label>
-        <input type="text" id="verse"${type === '묵상' ? ` placeholder="예: ${t ? esc(t.range.replace(/\s*[\d-]+장$/, '')) + ' ' + t.start + ':1' : '요 3:16'}"` : ''}></div>
+      <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="verse">제목</label>
+        <input type="text" id="verse"></div>
       <div style="display:flex;flex-direction:column;gap:8px"><label class="lab" for="note">${type === '기도' ? '나의 기도제목' : type === '감사' ? '오늘의 감사' : type === '간증' ? '나의 간증' : '하나님이 주신 마음'}</label>
         <textarea id="note"${type === '묵상' ? ' placeholder="오늘 말씀을 통해 깨달은 것, 결단한 것을 적어 보세요."' : ''}></textarea></div>
       <div style="display:flex;flex-direction:column;gap:8px">
