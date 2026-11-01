@@ -28,12 +28,13 @@
     check: '<path d="M5 12l5 5 9-10"/>', user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
     ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>',
     cal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
-    x: '<path d="M6 6l12 12M18 6L6 18"/>', plus: '<path d="M12 5v14M5 12h14"/>'
+    x: '<path d="M6 6l12 12M18 6L6 18"/>',
+    bible: '<path d="M6 3h11a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M11 7v7M8.5 9.5h5"/>', plus: '<path d="M12 5v14M5 12h14"/>'
   };
   const ico = (n, color, size) => `<svg class="icon" width="${size || 22}" height="${size || 22}" viewBox="0 0 24 24" fill="none" stroke="${color || 'currentColor'}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
 
   function tabbar(on) {
-    const t = [['home', '홈', 'home'], ['word', '말씀', 'book'], ['record', '기록', 'mark'], ['calendar', '일정', 'cal'], ['church', '교회', 'church']];
+    const t = [['home', '홈', 'home'], ['word', '말씀', 'book'], ['bible', '성경', 'bible'], ['record', '기록', 'mark'], ['calendar', '일정', 'cal'], ['church', '교회', 'church']];
     return `<nav class="tabbar" aria-label="주 메뉴">${t.map(([r, n, i]) =>
       `<a href="#/${r}" class="${on === r ? 'on' : ''}"${on === r ? ' aria-current="page"' : ''}>${ico(i)}${n}</a>`).join('')}</nav>`;
   }
@@ -167,6 +168,37 @@
           <span class="grow"><span class="serif" style="font-size:14px;line-height:1.7;white-space:pre-wrap">${esc(r.note)}</span><span class="sub">${esc(r.date)} · ${esc(r.range)}${r.verse ? ' · ' + esc(r.verse) : ''}</span></span></div>`).join('')}</div>`
         : `<p class="muted" style="margin:0;font-size:13px">아직 올린 글이 없습니다.</p>`}
     </main>${tabbar('record')}`;
+  }
+
+  // ---------- 성경: 새번역 (대한성서공회 누리집 본문을 앱 안 창에 그대로 띄운다 — 본문을 앱에 복사해 넣으려면 사용 허락이 필요) ----------
+  const BOOKS = ('gen 창세기 50|exo 출애굽기 40|lev 레위기 27|num 민수기 36|deu 신명기 34|jos 여호수아 24|jdg 사사기 21|rut 룻기 4|1sa 사무엘상 31|2sa 사무엘하 24|1ki 열왕기상 22|2ki 열왕기하 25|1ch 역대상 29|2ch 역대하 36|ezr 에스라 10|neh 느헤미야 13|est 에스더 10|job 욥기 42|psa 시편 150|pro 잠언 31|ecc 전도서 12|sng 아가 8|isa 이사야 66|jer 예레미야 52|lam 예레미야애가 5|ezk 에스겔 48|dan 다니엘 12|hos 호세아 14|jol 요엘 3|amo 아모스 9|oba 오바댜 1|jnh 요나 4|mic 미가 7|nam 나훔 3|hab 하박국 3|zep 스바냐 3|hag 학개 2|zec 스가랴 14|mal 말라기 4|'
+    + 'mat 마태복음 28|mrk 마가복음 16|luk 누가복음 24|jhn 요한복음 21|act 사도행전 28|rom 로마서 16|1co 고린도전서 16|2co 고린도후서 13|gal 갈라디아서 6|eph 에베소서 6|php 빌립보서 4|col 골로새서 4|1th 데살로니가전서 5|2th 데살로니가후서 3|1ti 디모데전서 6|2ti 디모데후서 4|tit 디도서 3|phm 빌레몬서 1|heb 히브리서 13|jas 야고보서 5|1pe 베드로전서 5|2pe 베드로후서 3|1jn 요한일서 5|2jn 요한이서 1|3jn 요한삼서 1|jud 유다서 1|rev 요한계시록 22')
+    .split('|').map(s => { const [code, name, n] = s.split(' '); return { code, name, n: Number(n) }; });
+  function bibleSpot() {   // 처음엔 오늘 읽을 본문, 그다음엔 마지막으로 본 곳
+    const t = D.today, def = t ? { book: String(t.book).toLowerCase(), chap: t.start } : { book: 'gen', chap: 1 };
+    const s = store.get('bible', def), b = BOOKS.find(x => x.code === s.book) || BOOKS[0];
+    return { b, chap: Math.min(Math.max(1, s.chap), b.n) };
+  }
+  function viewBible() {
+    const { b, chap } = bibleSpot(), i = BOOKS.indexOf(b);
+    const sel = 'height:44px;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--surface);color:var(--text);font-size:15px;padding:0 10px;font-family:var(--sans)';
+    const nav = 'width:44px;height:44px;flex-shrink:0;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:none;display:flex;align-items:center;justify-content:center';
+    return `<main style="gap:12px;padding:20px 16px 96px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;padding:0 4px"><h1 style="font-size:22px">성경</h1><span class="muted" style="font-size:12px">새번역 · 대한성서공회</span></div>
+      <div style="display:flex;gap:8px">
+        <button data-bmove="-1" aria-label="앞 장" style="${nav}">${ico('back', '#EEF4EA', 18)}</button>
+        <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="bbook">성경 책</label>
+        <select id="bbook" style="${sel};flex:1;min-width:0">
+          <optgroup label="구약">${BOOKS.slice(0, 39).map(x => `<option value="${x.code}"${x === b ? ' selected' : ''}>${x.name}</option>`).join('')}</optgroup>
+          <optgroup label="신약">${BOOKS.slice(39).map(x => `<option value="${x.code}"${x === b ? ' selected' : ''}>${x.name}</option>`).join('')}</optgroup>
+        </select>
+        <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="bchap">장</label>
+        <select id="bchap" style="${sel};width:86px">${Array.from({ length: b.n }, (_, k) => `<option value="${k + 1}"${k + 1 === chap ? ' selected' : ''}>${k + 1}장</option>`).join('')}</select>
+        <button data-bmove="1" aria-label="다음 장" style="${nav}">${ico('next', '#EEF4EA', 18)}</button>
+      </div>
+      <iframe title="새번역 ${b.name} ${chap}장" src="${bibleUrl(b.code, chap)}" style="width:100%;height:calc(100dvh - 230px);min-height:420px;border:0;border-radius:14px;background:#fff"></iframe>
+      <a href="${bibleUrl(b.code, chap)}" target="_blank" rel="noopener" class="muted" style="display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;font-size:13px">${ico('ext', '#A9BBA5', 15)}새 창에서 크게 보기</a>
+    </main>${tabbar('bible')}`;
   }
 
   // ---------- 일정: 달력 + 나의 베리트 예배 기록 + 내 일정 ----------
@@ -346,13 +378,20 @@
     if (!h && store.get('started', false)) { location.replace('#/home'); return; }
     document.body.classList.remove('paper');
     const [a, b] = h.split('/');
-    $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord() : a === 'calendar' ? viewCalendar()
+    $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord() : a === 'calendar' ? viewCalendar() : a === 'bible' ? viewBible()
       : a === 'church' ? (b ? viewChurch(b) : viewChurches()) : viewHome();
     document.querySelector('meta[name=theme-color]').content = document.body.classList.contains('paper') ? '#F2F8EC' : '#11281A';
     window.scrollTo(0, 0);
   }
 
   document.addEventListener('click', e => {
+    const bm = e.target.closest('[data-bmove]');
+    if (bm) {   // 앞 장 · 다음 장 (책 끝에서는 다음 책으로 넘어간다)
+      const { b, chap } = bibleSpot(), i = BOOKS.indexOf(b), step = Number(bm.dataset.bmove);
+      let nb = b, nc = chap + step;
+      if (nc < 1 && i > 0) { nb = BOOKS[i - 1]; nc = nb.n; } else if (nc > b.n && i < BOOKS.length - 1) { nb = BOOKS[i + 1]; nc = 1; }
+      store.set('bible', { book: nb.code, chap: Math.min(Math.max(1, nc), nb.n) }); route(); return;
+    }
     const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],[data-evedit],[data-evcancel],#evadd,#edsave,#vplay,#splay');
     if (!el) return;
     if (el.dataset.day) { store.set('calSel', el.dataset.day); store.set('evEdit', null); route(); return; }
@@ -408,6 +447,10 @@
       store.set('records', recs); store.set('rview', share);
       toast(share === 'me' ? '나에게 저장했습니다' : share === 'church' ? '우리 교회에게 나눴습니다' : '모두에게 나눴습니다'); route();
     }
+  });
+  document.addEventListener('change', e => {
+    if (e.target.id === 'bbook') { store.set('bible', { book: e.target.value, chap: 1 }); route(); }
+    if (e.target.id === 'bchap') { store.set('bible', { book: bibleSpot().b.code, chap: Number(e.target.value) }); route(); }
   });
   window.addEventListener('hashchange', route);
 
