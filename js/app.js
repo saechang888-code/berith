@@ -26,12 +26,14 @@
     play: '<path d="M8 5v14l11-7z"/>', pen: '<path d="M4 20l4-1 11-11-3-3L5 16z"/>',
     heart: '<path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/>',
     check: '<path d="M5 12l5 5 9-10"/>', user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
-    ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>'
+    ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>',
+    cal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+    x: '<path d="M6 6l12 12M18 6L6 18"/>', plus: '<path d="M12 5v14M5 12h14"/>'
   };
   const ico = (n, color, size) => `<svg class="icon" width="${size || 22}" height="${size || 22}" viewBox="0 0 24 24" fill="none" stroke="${color || 'currentColor'}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
 
   function tabbar(on) {
-    const t = [['home', '홈', 'home'], ['word', '말씀', 'book'], ['record', '기록', 'mark'], ['church', '교회', 'church']];
+    const t = [['home', '홈', 'home'], ['word', '말씀', 'book'], ['record', '기록', 'mark'], ['calendar', '일정', 'cal'], ['church', '교회', 'church']];
     return `<nav class="tabbar" aria-label="주 메뉴">${t.map(([r, n, i]) =>
       `<a href="#/${r}" class="${on === r ? 'on' : ''}"${on === r ? ' aria-current="page"' : ''}>${ico(i)}${n}</a>`).join('')}</nav>`;
   }
@@ -167,6 +169,79 @@
     </main>${tabbar('record')}`;
   }
 
+  // ---------- 일정: 달력 + 나의 베리트 예배 기록 + 내 일정 ----------
+  // 그날 '베리트 예배'를 드린 것으로 치는 때: 말씀 영상을 70% 넘게 봤거나, 그날 나의 베리트를 하나라도 썼을 때
+  function worshipDays() {
+    const set = new Set();
+    Object.entries(watched()).forEach(([d, w]) => { if (w.done) set.add(d); });
+    store.get('records', []).forEach(r => set.add(r.date));
+    return set;
+  }
+  const ymd = (y, m, d) => `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  function viewCalendar() {
+    const today = todayKey(), sel = store.get('calSel', today);
+    const [cy, cm] = store.get('calMonth', today.slice(0, 7)).split('-').map(Number);
+    const days = worshipDays(), events = store.get('events', {});
+    // 세는 것: 이번 달 · 연속 · 모두
+    const monthCount = [...days].filter(d => d.startsWith(ymd(cy, cm, 1).slice(0, 7))).length;
+    let streak = 0; for (let d = new Date(today + 'T00:00:00Z'); ; d.setUTCDate(d.getUTCDate() - 1)) {
+      const k = d.toISOString().slice(0, 10);
+      if (days.has(k)) streak++; else if (k !== today) break;   // 오늘 아직 안 드렸어도 어제까지 이어진 날수는 센다
+      if (streak > 3660) break;
+    }
+    const first = new Date(Date.UTC(cy, cm - 1, 1)).getUTCDay(), last = new Date(Date.UTC(cy, cm, 0)).getUTCDate();
+    const cells = [];
+    for (let i = 0; i < first; i++) cells.push('<span></span>');
+    for (let d = 1; d <= last; d++) {
+      const k = ymd(cy, cm, d), dow = (first + d - 1) % 7, ev = (events[k] || []).length;
+      const isSel = k === sel, isToday = k === today, done = days.has(k);
+      cells.push(`<button data-day="${k}" aria-label="${cm}월 ${d}일${done ? ', 베리트 예배 드림' : ''}${ev ? `, 일정 ${ev}개` : ''}" aria-pressed="${isSel}" style="height:48px;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0">
+        <span style="width:32px;height:32px;line-height:32px;border-radius:16px;font-size:14px;${isSel ? 'background:var(--accent);color:var(--bg);font-weight:700' : isToday ? 'border:1px solid var(--accent);color:var(--accent);font-weight:700' : `color:${dow === 0 ? '#E6A98F' : 'var(--text)'}`}">${d}</span>
+        <span style="display:flex;gap:3px;height:6px">${done ? '<i style="width:6px;height:6px;border-radius:3px;background:var(--accent)"></i>' : ''}${ev ? '<i style="width:6px;height:6px;border-radius:3px;border:1px solid var(--accent-hi);box-sizing:border-box"></i>' : ''}</span></button>`);
+    }
+    const sd = new Date(sel + 'T00:00:00+09:00'), selRecs = store.get('records', []).filter(r => r.date === sel);
+    const selW = watched()[sel] || {}, selEv = (events[sel] || []).slice().sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+    const stat = (n, label) => `<div class="card" style="padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:2px"><span class="serif" style="font-size:26px;font-weight:700;color:var(--accent)">${n}</span><span class="muted" style="font-size:12px">${label}</span></div>`;
+    return `<main style="gap:20px">
+      <div style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">나의 베리트 예배</span><h1>일정</h1></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        ${stat(monthCount + '일', `${cm}월 예배`)}${stat(streak + '일', '연속')}${stat(days.size + '일', '모두')}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <button data-cal="-1" aria-label="이전 달" style="width:44px;height:44px;border-radius:22px;border:1px solid rgba(238,244,234,.14);background:none;color:var(--text);display:flex;align-items:center;justify-content:center">${ico('back', '#EEF4EA', 18)}</button>
+          <span class="serif" style="font-size:19px;font-weight:700">${cy}년 ${cm}월</span>
+          <button data-cal="1" aria-label="다음 달" style="width:44px;height:44px;border-radius:22px;border:1px solid rgba(238,244,234,.14);background:none;color:var(--text);display:flex;align-items:center;justify-content:center">${ico('next', '#EEF4EA', 18)}</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:12px;color:var(--muted);padding-top:6px">${'일월화수목금토'.split('').map((d, i) => `<span style="${i ? '' : 'color:#E6A98F'}">${d}</span>`).join('')}</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;text-align:center">${cells.join('')}</div>
+        <div style="display:flex;gap:16px;justify-content:center;font-size:11px;color:var(--muted)">
+          <span style="display:flex;align-items:center;gap:6px"><i style="width:6px;height:6px;border-radius:3px;background:var(--accent)"></i>베리트 예배</span>
+          <span style="display:flex;align-items:center;gap:6px"><i style="width:6px;height:6px;border-radius:3px;border:1px solid var(--accent-hi)"></i>내 일정</span></div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px">
+        <span class="serif" style="font-size:17px;font-weight:700">${sd.getMonth() + 1}월 ${sd.getDate()}일 ${'일월화수목금토'[sd.getDay()]}요일</span>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:14px">
+          ${days.has(sel) ? `<span class="done" style="color:var(--accent);font-size:14px">${ico('check', '#C6E6A3', 16)}베리트 예배를 드렸습니다</span>` : `<span class="muted">${sel > today ? '아직 오지 않은 날입니다' : '이날은 베리트 예배 기록이 없습니다'}</span>`}
+          ${selW.done ? '<span class="muted" style="font-size:12px">· 말씀 영상 시청 완료</span>' : ''}
+          ${selRecs.map(r => `<span class="muted" style="font-size:12px">· ${esc(r.type)} 기록: ${esc(r.note.slice(0, 40))}${r.note.length > 40 ? '…' : ''}</span>`).join('')}
+        </div>
+        <div style="height:1px;background:var(--line)"></div>
+        <span class="lab">내 일정</span>
+        ${selEv.length ? selEv.map(e => `<div style="display:flex;align-items:center;gap:12px;min-height:44px">
+            <span class="serif" style="width:52px;color:var(--accent);font-weight:600">${esc(e.time || '종일')}</span><span style="flex:1;font-size:14px">${esc(e.text)}</span>
+            <button data-evdel="${e.id}" aria-label="일정 지우기" style="width:44px;height:44px;border:0;background:none;display:flex;align-items:center;justify-content:center">${ico('x', '#A9BBA5', 16)}</button></div>`).join('') : '<span class="muted" style="font-size:13px">적어 둔 일정이 없습니다.</span>'}
+        <div style="display:flex;gap:8px">
+          <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtime">시간</label>
+          <input type="time" id="evtime" style="width:110px;border-radius:12px;border:1px solid rgba(238,244,234,.14);background:var(--bg);color:var(--text);padding:0 10px;font-size:14px;color-scheme:dark">
+          <label style="position:absolute;width:1px;height:1px;overflow:hidden" for="evtext">일정 내용</label>
+          <input type="text" id="evtext" placeholder="일정 쓰기" style="flex:1;min-width:0;font-family:var(--sans);font-size:14px;padding:12px 14px;background:var(--bg)">
+          <button id="evadd" aria-label="일정 넣기" style="width:48px;flex-shrink:0;border:0;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center">${ico('plus', '#11281A', 20)}</button>
+        </div>
+      </div>
+    </main>${tabbar('calendar')}`;
+  }
+
   function viewChurches() {
     return `<main style="gap:22px">
       <div style="display:flex;flex-direction:column;gap:6px">
@@ -259,15 +334,34 @@
     if (!h && store.get('started', false)) { location.replace('#/home'); return; }
     document.body.classList.remove('paper');
     const [a, b] = h.split('/');
-    $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord()
+    $app.innerHTML = !a || a === 'start' ? viewStart() : a === 'login' ? viewLogin() : a === 'word' ? viewWord() : a === 'record' ? viewRecord() : a === 'calendar' ? viewCalendar()
       : a === 'church' ? (b ? viewChurch(b) : viewChurches()) : viewHome();
     document.querySelector('meta[name=theme-color]').content = document.body.classList.contains('paper') ? '#F2F8EC' : '#11281A';
     window.scrollTo(0, 0);
   }
 
   document.addEventListener('click', e => {
-    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],#vplay,#splay');
+    const el = e.target.closest('[data-start],[data-type],[data-save],[data-rview],[data-ctab],[data-day],[data-cal],[data-evdel],#evadd,#vplay,#splay');
     if (!el) return;
+    if (el.dataset.day) { store.set('calSel', el.dataset.day); route(); return; }
+    if (el.dataset.cal) {
+      const [y, m] = store.get('calMonth', todayKey().slice(0, 7)).split('-').map(Number);
+      const d = new Date(Date.UTC(y, m - 1 + Number(el.dataset.cal), 1));
+      store.set('calMonth', d.toISOString().slice(0, 7)); route(); return;
+    }
+    if (el.id === 'evadd' || el.dataset.evdel) {
+      const sel = store.get('calSel', todayKey()), ev = store.get('events', {});
+      if (el.id === 'evadd') {
+        const text = document.getElementById('evtext').value.trim();
+        if (!text) { toast('일정 내용을 적어 주세요'); return; }
+        (ev[sel] = ev[sel] || []).push({ id: Date.now().toString(36), time: document.getElementById('evtime').value, text });
+        toast('일정을 넣었습니다');
+      } else {
+        ev[sel] = (ev[sel] || []).filter(x => x.id !== el.dataset.evdel);
+        if (!ev[sel].length) delete ev[sel];
+      }
+      store.set('events', ev); route(); return;
+    }
     if (el.hasAttribute('data-start')) store.set('started', true);
     if (el.dataset.type) {   // 종류를 바꿔도 쓰던 글은 그대로 둔다
       const keep = { v: (document.getElementById('verse') || {}).value, n: (document.getElementById('note') || {}).value };
