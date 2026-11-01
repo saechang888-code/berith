@@ -1,5 +1,5 @@
-// 앱 껍데기는 기기에 두고(빠르게 열림), 오늘 자료(data/)는 늘 새로 받아 온다
-const CACHE = 'berith-v1';
+// 앱 껍데기를 기기에 저장해 두어 인터넷이 끊겨도 열리게 한다
+const CACHE = 'berith-v2';
 const SHELL = ['./', 'index.html', 'css/app.css', 'js/app.js', 'manifest.webmanifest', 'images/icon-192.png', 'images/seam-vision-center.jpg'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
@@ -9,10 +9,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const u = new URL(e.request.url);
   if (u.origin !== location.origin) return;
-  if (u.pathname.includes('/data/')) {            // 자료는 인터넷 먼저, 끊기면 저장된 것
-    e.respondWith(fetch(e.request).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put(e.request, c)); return r; })
-      .catch(() => caches.match(e.request)));
-    return;
-  }
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+  // 늘 인터넷에서 새것을 먼저 받고(고친 화면이 바로 보이도록), 끊겼을 때만 저장된 것을 쓴다
+  e.respondWith(fetch(e.request).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put(e.request, c)); return r; })
+    .catch(() => caches.match(e.request)));
 });
