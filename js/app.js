@@ -176,6 +176,7 @@
     .split('|').map(s => { const [code, name, n] = s.split(' '); return { code, name, n: Number(n) }; });
   const VERSIONS = [['SAENEW', '새번역'], ['GAE', '개역개정'], ['COGNEW', '공동번역 개정'], ['SAE', '표준새번역'], ['CEV', 'CEV 영어']];
   const bibleCache = {};
+  const EASY_BOOKS = ['jhn'];   // 「오늘의 말로 풀어 읽기」가 준비된 책 (data/bible/easy/<책>.json)
   function bibleSpot() {   // 처음엔 오늘 읽을 본문, 그다음엔 마지막으로 본 곳
     const t = D.today, def = t ? { book: String(t.book).toLowerCase(), chap: t.start, view: 'read' } : { book: 'gen', chap: 1, view: 'books' };
     const s = Object.assign({}, def, store.get('bible', {})), b = BOOKS.find(x => x.code === s.book) || BOOKS[0];
@@ -210,11 +211,27 @@
       fetch(`data/bible/krv/${b.code}.json`).then(r => r.json()).then(j => { bibleCache[b.code] = j; if (location.hash === '#/bible') route(); }).catch(() => toast('성경을 불러오지 못했습니다'));
     }
     const vs = data ? data.chapters[chap - 1] || [] : [];
+    // 「오늘의 말로 풀어 읽기」가 있는 책이면 함께 보기 / 개역한글 / 오늘의 말로 를 고른다
+    const hasEasy = EASY_BOOKS.includes(b.code), easyKey = 'easy:' + b.code;
+    if (hasEasy && !bibleCache[easyKey]) {
+      fetch(`data/bible/easy/${b.code}.json`).then(r => r.json()).then(j => { bibleCache[easyKey] = j; if (location.hash === '#/bible') route(); }).catch(() => {});
+    }
+    const ez = hasEasy && bibleCache[easyKey] ? bibleCache[easyKey].chapters[chap - 1] || [] : [];
+    const mode = hasEasy ? store.get('bmode', 'both') : 'krv';
+    const verseHtml = (t, k) => {
+      const e = ez[k] || '';
+      const krv = `<span>${esc(t)}</span>`, easy = `<span style="font-family:var(--sans);font-size:16px;line-height:1.8;color:#2D5A3A">${esc(e)}</span>`;
+      if (mode === 'easy' && e) return easy;
+      if (mode === 'both' && e) return `${krv}<span style="display:block;margin-top:6px;padding-left:10px;border-left:3px solid #9FD07A">${easy}</span>`;
+      return krv;
+    };
     return `<main style="gap:14px">${head(`${b.name} ${chap}장`, 'data-bview="chapters"')}
       ${others}
+      ${hasEasy ? `<div class="chips" role="tablist" aria-label="보는 방식">${[['both', '함께 보기'], ['krv', '개역한글'], ['easy', '오늘의 말로']].map(([m, n]) => chip(m === mode, `data-bmode="${m}" role="tab" aria-selected="${m === mode}"`, n)).join('')}</div>
+      ${mode !== 'krv' ? '<span class="muted" style="font-size:11px;margin-top:-6px">오늘의 말로 풀어 읽기 — 개역한글을 쉬운 오늘의 말로 풀어 옮긴 참고용 글이에요.</span>' : ''}` : ''}
       ${vs.length ? `<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch" aria-label="절로 가기">${vs.map((_, k) => `<button data-bverse="${k + 1}" style="flex-shrink:0;min-width:40px;height:36px;border-radius:18px;border:1px solid rgba(238,244,234,.16);background:${k + 1 === verse ? 'var(--accent)' : 'none'};color:${k + 1 === verse ? 'var(--bg)' : 'var(--soft)'};font-size:13px">${k + 1}절</button>`).join('')}</div>` : ''}
       <article style="display:flex;flex-direction:column;gap:12px;padding:22px 20px;border-radius:18px;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.9">
-        ${data ? vs.map((t, k) => `<p id="v${k + 1}" style="margin:0;${k + 1 === verse ? 'background:var(--mark);margin:0 -10px;padding:6px 10px;border-radius:8px' : ''}"><sup style="font-family:var(--sans);font-size:11px;color:var(--deep);margin-right:6px;font-weight:700">${k + 1}</sup>${esc(t)}</p>`).join('') : '<p class="muted" style="margin:0">불러오는 중입니다…</p>'}
+        ${data ? vs.map((t, k) => `<p id="v${k + 1}" style="margin:0;${k + 1 === verse ? 'background:var(--mark);margin:0 -10px;padding:6px 10px;border-radius:8px' : ''}"><sup style="font-family:var(--sans);font-size:11px;color:var(--deep);margin-right:6px;font-weight:700">${k + 1}</sup>${verseHtml(t, k)}</p>`).join('') : '<p class="muted" style="margin:0">불러오는 중입니다…</p>'}
       </article>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <button data-bmove="-1" class="btn btn-ghost" style="min-height:48px">${ico('back', '#EEF4EA', 16)}앞 장</button>
@@ -408,9 +425,10 @@
   }
 
   document.addEventListener('click', e => {
-    const bel = e.target.closest('[data-bmove],[data-bnt],[data-bbook],[data-bchap],[data-bview],[data-bverse]');
+    const bel = e.target.closest('[data-bmove],[data-bnt],[data-bbook],[data-bchap],[data-bview],[data-bverse],[data-bmode]');
     if (bel) {
       const d = bel.dataset;
+      if (d.bmode) { store.set('bmode', d.bmode); route(); return; }
       if (d.bverse) {   // 절로 가기: 그 절로 내려가 표시만 한다
         setBible({ verse: Number(d.bverse) });
         document.querySelectorAll('[data-bverse]').forEach(x => { const on = x === bel; x.style.background = on ? 'var(--accent)' : 'none'; x.style.color = on ? 'var(--bg)' : 'var(--soft)'; });
