@@ -173,7 +173,7 @@
     .split('|').map(s => { const [code, name, n] = s.split(' '); return { code, name, n: Number(n) }; });
   const VERSIONS = [['SAENEW', '새번역'], ['GAE', '개역개정'], ['COGNEW', '공동번역 개정'], ['SAE', '표준새번역'], ['CEV', 'CEV 영어']];
   const bibleCache = {};
-  const EASY_BOOKS = ['gen', 'exo', 'lev', 'deu', 'jhn', 'job'];   // 「오늘의 말로 풀어 읽기」가 준비된 책 (data/bible/easy/<책>.json)
+  const EASY_BOOKS = ['gen', 'exo', 'lev', 'num', 'deu', 'jhn', 'job'];   // 「오늘의 말로 풀어 읽기」가 준비된 책 (data/bible/easy/<책>.json)
   function bibleSpot() {   // 처음엔 오늘 읽을 본문, 그다음엔 마지막으로 본 곳
     const t = D.today, def = t ? { book: String(t.book).toLowerCase(), chap: t.start, view: 'read' } : { book: 'gen', chap: 1, view: 'books' };
     const s = Object.assign({}, def, store.get('bible', {})), b = BOOKS.find(x => x.code === s.book) || BOOKS[0];
